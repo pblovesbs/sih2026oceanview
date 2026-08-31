@@ -1,0 +1,2567 @@
+[
+  {
+    "_id": "2902101_42",
+    "platform_number": "2902101",
+    "cycle_number": 42,
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        84.5,
+        12.8
+      ]
+    },
+    "date": "2024-05-15T06:00:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "data_mode": "D",
+    "data": [
+      {
+        "depth": 0,
+        "pres": -0.0,
+        "temp": 27.1,
+        "psal": 33.07,
+        "density": 37.24
+      },
+      {
+        "depth": 5,
+        "pres": 5.1,
+        "temp": 26.84,
+        "psal": 33.1,
+        "density": 37.3
+      },
+      {
+        "depth": 10,
+        "pres": 10.1,
+        "temp": 26.59,
+        "psal": 33.1,
+        "density": 37.35
+      },
+      {
+        "depth": 20,
+        "pres": 20.0,
+        "temp": 26.06,
+        "psal": 33.17,
+        "density": 37.48
+      },
+      {
+        "depth": 30,
+        "pres": 30.2,
+        "temp": 25.37,
+        "psal": 33.24,
+        "density": 37.64
+      },
+      {
+        "depth": 50,
+        "pres": 50.4,
+        "temp": 23.88,
+        "psal": 33.47,
+        "density": 37.99
+      },
+      {
+        "depth": 75,
+        "pres": 75.8,
+        "temp": 21.3,
+        "psal": 33.87,
+        "density": 38.57
+      },
+      {
+        "depth": 100,
+        "pres": 101.0,
+        "temp": 17.93,
+        "psal": 34.26,
+        "density": 39.24
+      },
+      {
+        "depth": 125,
+        "pres": 126.2,
+        "temp": 14.51,
+        "psal": 34.62,
+        "density": 39.9
+      },
+      {
+        "depth": 150,
+        "pres": 151.7,
+        "temp": 11.42,
+        "psal": 34.81,
+        "density": 40.45
+      },
+      {
+        "depth": 200,
+        "pres": 202.1,
+        "temp": 7.16,
+        "psal": 35.0,
+        "density": 41.24
+      },
+      {
+        "depth": 250,
+        "pres": 252.3,
+        "temp": 5.2,
+        "psal": 35.09,
+        "density": 41.71
+      },
+      {
+        "depth": 300,
+        "pres": 303.1,
+        "temp": 4.49,
+        "psal": 35.1,
+        "density": 42.0
+      },
+      {
+        "depth": 400,
+        "pres": 404.0,
+        "temp": 4.25,
+        "psal": 35.1,
+        "density": 42.43
+      },
+      {
+        "depth": 500,
+        "pres": 505.0,
+        "temp": 4.13,
+        "psal": 35.08,
+        "density": 42.84
+      },
+      {
+        "depth": 600,
+        "pres": 605.8,
+        "temp": 4.25,
+        "psal": 35.11,
+        "density": 43.24
+      },
+      {
+        "depth": 750,
+        "pres": 757.4,
+        "temp": 4.22,
+        "psal": 35.09,
+        "density": 43.83
+      },
+      {
+        "depth": 1000,
+        "pres": 1010.1,
+        "temp": 4.23,
+        "psal": 35.13,
+        "density": 44.85
+      },
+      {
+        "depth": 1250,
+        "pres": 1262.5,
+        "temp": 4.16,
+        "psal": 35.09,
+        "density": 45.84
+      },
+      {
+        "depth": 1500,
+        "pres": 1515.0,
+        "temp": 4.25,
+        "psal": 35.09,
+        "density": 46.83
+      },
+      {
+        "depth": 1750,
+        "pres": 1767.6,
+        "temp": 4.14,
+        "psal": 35.06,
+        "density": 47.83
+      },
+      {
+        "depth": 2000,
+        "pres": 2020.1,
+        "temp": 4.27,
+        "psal": 35.1,
+        "density": 48.83
+      }
+    ]
+  },
+  {
+    "_id": "2902102_58",
+    "platform_number": "2902102",
+    "cycle_number": 58,
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        88.2,
+        15.4
+      ]
+    },
+    "date": "2024-05-16T12:30:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "data_mode": "D",
+    "data": [
+      {
+        "depth": 0,
+        "pres": -0.0,
+        "temp": 26.84,
+        "psal": 32.68,
+        "density": 37.11
+      },
+      {
+        "depth": 5,
+        "pres": 5.1,
+        "temp": 26.69,
+        "psal": 32.59,
+        "density": 37.11
+      },
+      {
+        "depth": 10,
+        "pres": 10.1,
+        "temp": 26.38,
+        "psal": 32.7,
+        "density": 37.21
+      },
+      {
+        "depth": 20,
+        "pres": 20.2,
+        "temp": 25.75,
+        "psal": 32.79,
+        "density": 37.36
+      },
+      {
+        "depth": 30,
+        "pres": 30.2,
+        "temp": 25.3,
+        "psal": 32.89,
+        "density": 37.5
+      },
+      {
+        "depth": 50,
+        "pres": 50.5,
+        "temp": 23.63,
+        "psal": 33.22,
+        "density": 37.92
+      },
+      {
+        "depth": 75,
+        "pres": 75.8,
+        "temp": 21.02,
+        "psal": 33.66,
+        "density": 38.52
+      },
+      {
+        "depth": 100,
+        "pres": 101.0,
+        "temp": 17.9,
+        "psal": 34.1,
+        "density": 39.17
+      },
+      {
+        "depth": 125,
+        "pres": 126.3,
+        "temp": 14.44,
+        "psal": 34.47,
+        "density": 39.84
+      },
+      {
+        "depth": 150,
+        "pres": 151.5,
+        "temp": 11.38,
+        "psal": 34.78,
+        "density": 40.44
+      },
+      {
+        "depth": 200,
+        "pres": 202.0,
+        "temp": 7.06,
+        "psal": 35.0,
+        "density": 41.25
+      },
+      {
+        "depth": 250,
+        "pres": 252.5,
+        "temp": 5.21,
+        "psal": 35.07,
+        "density": 41.71
+      },
+      {
+        "depth": 300,
+        "pres": 303.0,
+        "temp": 4.65,
+        "psal": 35.1,
+        "density": 41.98
+      },
+      {
+        "depth": 400,
+        "pres": 404.0,
+        "temp": 4.24,
+        "psal": 35.04,
+        "density": 42.41
+      },
+      {
+        "depth": 500,
+        "pres": 505.0,
+        "temp": 4.21,
+        "psal": 35.17,
+        "density": 42.87
+      },
+      {
+        "depth": 600,
+        "pres": 605.9,
+        "temp": 4.22,
+        "psal": 35.1,
+        "density": 43.24
+      },
+      {
+        "depth": 750,
+        "pres": 757.6,
+        "temp": 4.26,
+        "psal": 35.12,
+        "density": 43.84
+      },
+      {
+        "depth": 1000,
+        "pres": 1009.9,
+        "temp": 4.15,
+        "psal": 35.14,
+        "density": 44.86
+      },
+      {
+        "depth": 1250,
+        "pres": 1262.4,
+        "temp": 4.23,
+        "psal": 35.17,
+        "density": 45.86
+      },
+      {
+        "depth": 1500,
+        "pres": 1514.9,
+        "temp": 4.17,
+        "psal": 35.1,
+        "density": 46.84
+      },
+      {
+        "depth": 1750,
+        "pres": 1767.4,
+        "temp": 4.12,
+        "psal": 35.1,
+        "density": 47.85
+      },
+      {
+        "depth": 2000,
+        "pres": 2020.2,
+        "temp": 4.22,
+        "psal": 35.07,
+        "density": 48.82
+      }
+    ]
+  },
+  {
+    "_id": "2902103_31",
+    "platform_number": "2902103",
+    "cycle_number": 31,
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        91.8,
+        18.2
+      ]
+    },
+    "date": "2024-05-14T09:15:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "data_mode": "D",
+    "data": [
+      {
+        "depth": 0,
+        "pres": 0.0,
+        "temp": 26.76,
+        "psal": 32.05,
+        "density": 36.85
+      },
+      {
+        "depth": 5,
+        "pres": 5.1,
+        "temp": 26.58,
+        "psal": 32.08,
+        "density": 36.9
+      },
+      {
+        "depth": 10,
+        "pres": 10.0,
+        "temp": 26.29,
+        "psal": 32.2,
+        "density": 37.01
+      },
+      {
+        "depth": 20,
+        "pres": 20.2,
+        "temp": 25.69,
+        "psal": 32.3,
+        "density": 37.16
+      },
+      {
+        "depth": 30,
+        "pres": 30.2,
+        "temp": 25.15,
+        "psal": 32.43,
+        "density": 37.32
+      },
+      {
+        "depth": 50,
+        "pres": 50.4,
+        "temp": 23.58,
+        "psal": 32.78,
+        "density": 37.74
+      },
+      {
+        "depth": 75,
+        "pres": 75.6,
+        "temp": 21.06,
+        "psal": 33.33,
+        "density": 38.37
+      },
+      {
+        "depth": 100,
+        "pres": 101.1,
+        "temp": 17.82,
+        "psal": 33.87,
+        "density": 39.09
+      },
+      {
+        "depth": 125,
+        "pres": 126.3,
+        "temp": 14.47,
+        "psal": 34.36,
+        "density": 39.79
+      },
+      {
+        "depth": 150,
+        "pres": 151.7,
+        "temp": 11.35,
+        "psal": 34.73,
+        "density": 40.42
+      },
+      {
+        "depth": 200,
+        "pres": 201.9,
+        "temp": 7.1,
+        "psal": 34.97,
+        "density": 41.24
+      },
+      {
+        "depth": 250,
+        "pres": 252.5,
+        "temp": 5.2,
+        "psal": 35.07,
+        "density": 41.71
+      },
+      {
+        "depth": 300,
+        "pres": 303.0,
+        "temp": 4.57,
+        "psal": 35.12,
+        "density": 42.0
+      },
+      {
+        "depth": 400,
+        "pres": 404.3,
+        "temp": 4.31,
+        "psal": 35.09,
+        "density": 42.42
+      },
+      {
+        "depth": 500,
+        "pres": 504.9,
+        "temp": 4.24,
+        "psal": 35.07,
+        "density": 42.82
+      },
+      {
+        "depth": 600,
+        "pres": 606.1,
+        "temp": 4.22,
+        "psal": 35.09,
+        "density": 43.23
+      },
+      {
+        "depth": 750,
+        "pres": 757.4,
+        "temp": 4.22,
+        "psal": 35.1,
+        "density": 43.83
+      },
+      {
+        "depth": 1000,
+        "pres": 1010.1,
+        "temp": 4.12,
+        "psal": 35.09,
+        "density": 44.84
+      },
+      {
+        "depth": 1250,
+        "pres": 1262.5,
+        "temp": 4.21,
+        "psal": 35.06,
+        "density": 45.82
+      },
+      {
+        "depth": 1500,
+        "pres": 1515.0,
+        "temp": 4.22,
+        "psal": 35.07,
+        "density": 46.82
+      },
+      {
+        "depth": 1750,
+        "pres": 1767.5,
+        "temp": 4.2,
+        "psal": 35.07,
+        "density": 47.82
+      },
+      {
+        "depth": 2000,
+        "pres": 2020.1,
+        "temp": 4.23,
+        "psal": 35.13,
+        "density": 48.85
+      }
+    ]
+  },
+  {
+    "_id": "2902104_65",
+    "platform_number": "2902104",
+    "cycle_number": 65,
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        82.3,
+        9.5
+      ]
+    },
+    "date": "2024-05-17T03:45:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "data_mode": "D",
+    "data": [
+      {
+        "depth": 0,
+        "pres": 0.1,
+        "temp": 27.13,
+        "psal": 33.25,
+        "density": 37.31
+      },
+      {
+        "depth": 5,
+        "pres": 5.2,
+        "temp": 27.09,
+        "psal": 33.28,
+        "density": 37.35
+      },
+      {
+        "depth": 10,
+        "pres": 10.1,
+        "temp": 26.71,
+        "psal": 33.31,
+        "density": 37.43
+      },
+      {
+        "depth": 20,
+        "pres": 20.2,
+        "temp": 26.16,
+        "psal": 33.34,
+        "density": 37.54
+      },
+      {
+        "depth": 30,
+        "pres": 30.5,
+        "temp": 25.47,
+        "psal": 33.45,
+        "density": 37.71
+      },
+      {
+        "depth": 50,
+        "pres": 50.3,
+        "temp": 23.81,
+        "psal": 33.68,
+        "density": 38.09
+      },
+      {
+        "depth": 75,
+        "pres": 75.8,
+        "temp": 21.23,
+        "psal": 34.03,
+        "density": 38.65
+      },
+      {
+        "depth": 100,
+        "pres": 101.1,
+        "temp": 17.97,
+        "psal": 34.34,
+        "density": 39.27
+      },
+      {
+        "depth": 125,
+        "pres": 126.3,
+        "temp": 14.55,
+        "psal": 34.66,
+        "density": 39.91
+      },
+      {
+        "depth": 150,
+        "pres": 151.6,
+        "temp": 11.42,
+        "psal": 34.92,
+        "density": 40.5
+      },
+      {
+        "depth": 200,
+        "pres": 201.9,
+        "temp": 7.07,
+        "psal": 35.04,
+        "density": 41.27
+      },
+      {
+        "depth": 250,
+        "pres": 252.5,
+        "temp": 5.3,
+        "psal": 35.06,
+        "density": 41.69
+      },
+      {
+        "depth": 300,
+        "pres": 302.9,
+        "temp": 4.59,
+        "psal": 35.12,
+        "density": 42.0
+      },
+      {
+        "depth": 400,
+        "pres": 403.9,
+        "temp": 4.22,
+        "psal": 35.09,
+        "density": 42.43
+      },
+      {
+        "depth": 500,
+        "pres": 504.9,
+        "temp": 4.29,
+        "psal": 35.11,
+        "density": 42.83
+      },
+      {
+        "depth": 600,
+        "pres": 606.1,
+        "temp": 4.25,
+        "psal": 35.16,
+        "density": 43.26
+      },
+      {
+        "depth": 750,
+        "pres": 757.6,
+        "temp": 4.12,
+        "psal": 35.09,
+        "density": 43.84
+      },
+      {
+        "depth": 1000,
+        "pres": 1010.1,
+        "temp": 4.16,
+        "psal": 35.11,
+        "density": 44.85
+      },
+      {
+        "depth": 1250,
+        "pres": 1262.2,
+        "temp": 4.15,
+        "psal": 35.1,
+        "density": 45.84
+      },
+      {
+        "depth": 1500,
+        "pres": 1514.9,
+        "temp": 4.15,
+        "psal": 35.09,
+        "density": 46.84
+      },
+      {
+        "depth": 1750,
+        "pres": 1767.5,
+        "temp": 4.28,
+        "psal": 35.06,
+        "density": 47.81
+      },
+      {
+        "depth": 2000,
+        "pres": 2019.9,
+        "temp": 4.21,
+        "psal": 35.14,
+        "density": 48.86
+      }
+    ]
+  },
+  {
+    "_id": "2902105_24",
+    "platform_number": "2902105",
+    "cycle_number": 24,
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        86.7,
+        8.1
+      ]
+    },
+    "date": "2024-05-18T18:20:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "data_mode": "D",
+    "data": [
+      {
+        "depth": 0,
+        "pres": 0.0,
+        "temp": 27.31,
+        "psal": 33.79,
+        "density": 37.52
+      },
+      {
+        "depth": 5,
+        "pres": 5.0,
+        "temp": 27.12,
+        "psal": 33.8,
+        "density": 37.56
+      },
+      {
+        "depth": 10,
+        "pres": 10.3,
+        "temp": 26.92,
+        "psal": 33.84,
+        "density": 37.62
+      },
+      {
+        "depth": 20,
+        "pres": 20.0,
+        "temp": 26.31,
+        "psal": 33.93,
+        "density": 37.77
+      },
+      {
+        "depth": 30,
+        "pres": 30.3,
+        "temp": 25.72,
+        "psal": 33.95,
+        "density": 37.89
+      },
+      {
+        "depth": 50,
+        "pres": 50.5,
+        "temp": 24.09,
+        "psal": 34.07,
+        "density": 38.22
+      },
+      {
+        "depth": 75,
+        "pres": 75.8,
+        "temp": 21.42,
+        "psal": 34.35,
+        "density": 38.76
+      },
+      {
+        "depth": 100,
+        "pres": 101.0,
+        "temp": 18.14,
+        "psal": 34.6,
+        "density": 39.36
+      },
+      {
+        "depth": 125,
+        "pres": 126.2,
+        "temp": 14.75,
+        "psal": 34.8,
+        "density": 39.95
+      },
+      {
+        "depth": 150,
+        "pres": 151.6,
+        "temp": 11.51,
+        "psal": 34.95,
+        "density": 40.5
+      },
+      {
+        "depth": 200,
+        "pres": 202.1,
+        "temp": 7.2,
+        "psal": 35.06,
+        "density": 41.26
+      },
+      {
+        "depth": 250,
+        "pres": 252.5,
+        "temp": 5.24,
+        "psal": 35.11,
+        "density": 41.71
+      },
+      {
+        "depth": 300,
+        "pres": 303.1,
+        "temp": 4.55,
+        "psal": 35.13,
+        "density": 42.01
+      },
+      {
+        "depth": 400,
+        "pres": 404.0,
+        "temp": 4.28,
+        "psal": 35.14,
+        "density": 42.44
+      },
+      {
+        "depth": 500,
+        "pres": 505.0,
+        "temp": 4.24,
+        "psal": 35.09,
+        "density": 42.83
+      },
+      {
+        "depth": 600,
+        "pres": 606.1,
+        "temp": 4.19,
+        "psal": 35.1,
+        "density": 43.24
+      },
+      {
+        "depth": 750,
+        "pres": 757.4,
+        "temp": 4.16,
+        "psal": 35.16,
+        "density": 43.87
+      },
+      {
+        "depth": 1000,
+        "pres": 1010.1,
+        "temp": 4.14,
+        "psal": 35.13,
+        "density": 44.86
+      },
+      {
+        "depth": 1250,
+        "pres": 1262.5,
+        "temp": 4.23,
+        "psal": 35.12,
+        "density": 45.84
+      },
+      {
+        "depth": 1500,
+        "pres": 1514.9,
+        "temp": 4.16,
+        "psal": 35.1,
+        "density": 46.84
+      },
+      {
+        "depth": 1750,
+        "pres": 1767.4,
+        "temp": 4.25,
+        "psal": 35.1,
+        "density": 47.83
+      },
+      {
+        "depth": 2000,
+        "pres": 2019.9,
+        "temp": 4.18,
+        "psal": 35.11,
+        "density": 48.85
+      }
+    ]
+  },
+  {
+    "_id": "2902106_72",
+    "platform_number": "2902106",
+    "cycle_number": 72,
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        93.4,
+        11.2
+      ]
+    },
+    "date": "2024-05-15T21:00:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "data_mode": "D",
+    "data": [
+      {
+        "depth": 0,
+        "pres": -0.0,
+        "temp": 27.24,
+        "psal": 33.06,
+        "density": 37.21
+      },
+      {
+        "depth": 5,
+        "pres": 4.9,
+        "temp": 27.02,
+        "psal": 33.06,
+        "density": 37.26
+      },
+      {
+        "depth": 10,
+        "pres": 10.1,
+        "temp": 26.74,
+        "psal": 33.12,
+        "density": 37.34
+      },
+      {
+        "depth": 20,
+        "pres": 20.2,
+        "temp": 26.31,
+        "psal": 33.23,
+        "density": 37.48
+      },
+      {
+        "depth": 30,
+        "pres": 30.3,
+        "temp": 25.6,
+        "psal": 33.27,
+        "density": 37.62
+      },
+      {
+        "depth": 50,
+        "pres": 50.4,
+        "temp": 23.99,
+        "psal": 33.54,
+        "density": 38.01
+      },
+      {
+        "depth": 75,
+        "pres": 75.7,
+        "temp": 21.37,
+        "psal": 33.95,
+        "density": 38.59
+      },
+      {
+        "depth": 100,
+        "pres": 101.0,
+        "temp": 18.12,
+        "psal": 34.31,
+        "density": 39.24
+      },
+      {
+        "depth": 125,
+        "pres": 126.3,
+        "temp": 14.66,
+        "psal": 34.62,
+        "density": 39.88
+      },
+      {
+        "depth": 150,
+        "pres": 151.5,
+        "temp": 11.45,
+        "psal": 34.83,
+        "density": 40.46
+      },
+      {
+        "depth": 200,
+        "pres": 202.2,
+        "temp": 7.26,
+        "psal": 35.06,
+        "density": 41.25
+      },
+      {
+        "depth": 250,
+        "pres": 252.5,
+        "temp": 5.23,
+        "psal": 35.11,
+        "density": 41.72
+      },
+      {
+        "depth": 300,
+        "pres": 302.9,
+        "temp": 4.67,
+        "psal": 35.07,
+        "density": 41.97
+      },
+      {
+        "depth": 400,
+        "pres": 403.9,
+        "temp": 4.21,
+        "psal": 35.04,
+        "density": 42.41
+      },
+      {
+        "depth": 500,
+        "pres": 505.0,
+        "temp": 4.17,
+        "psal": 35.1,
+        "density": 42.84
+      },
+      {
+        "depth": 600,
+        "pres": 605.9,
+        "temp": 4.29,
+        "psal": 35.13,
+        "density": 43.24
+      },
+      {
+        "depth": 750,
+        "pres": 757.4,
+        "temp": 4.16,
+        "psal": 35.11,
+        "density": 43.85
+      },
+      {
+        "depth": 1000,
+        "pres": 1010.0,
+        "temp": 4.29,
+        "psal": 35.14,
+        "density": 44.84
+      },
+      {
+        "depth": 1250,
+        "pres": 1262.5,
+        "temp": 4.11,
+        "psal": 35.14,
+        "density": 45.87
+      },
+      {
+        "depth": 1500,
+        "pres": 1514.9,
+        "temp": 4.26,
+        "psal": 35.05,
+        "density": 46.81
+      },
+      {
+        "depth": 1750,
+        "pres": 1767.5,
+        "temp": 4.2,
+        "psal": 35.1,
+        "density": 47.84
+      },
+      {
+        "depth": 2000,
+        "pres": 2020.0,
+        "temp": 4.23,
+        "psal": 35.07,
+        "density": 48.82
+      }
+    ]
+  },
+  {
+    "_id": "2902107_19",
+    "platform_number": "2902107",
+    "cycle_number": 19,
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        89.9,
+        13.6
+      ]
+    },
+    "date": "2024-05-19T04:10:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "data_mode": "D",
+    "data": [
+      {
+        "depth": 0,
+        "pres": -0.2,
+        "temp": 27.17,
+        "psal": 32.82,
+        "density": 37.13
+      },
+      {
+        "depth": 5,
+        "pres": 5.0,
+        "temp": 26.99,
+        "psal": 32.9,
+        "density": 37.2
+      },
+      {
+        "depth": 10,
+        "pres": 10.2,
+        "temp": 26.77,
+        "psal": 32.93,
+        "density": 37.26
+      },
+      {
+        "depth": 20,
+        "pres": 20.4,
+        "temp": 26.16,
+        "psal": 33.07,
+        "density": 37.43
+      },
+      {
+        "depth": 30,
+        "pres": 30.4,
+        "temp": 25.51,
+        "psal": 33.14,
+        "density": 37.58
+      },
+      {
+        "depth": 50,
+        "pres": 50.6,
+        "temp": 24.0,
+        "psal": 33.34,
+        "density": 37.92
+      },
+      {
+        "depth": 75,
+        "pres": 75.6,
+        "temp": 21.33,
+        "psal": 33.72,
+        "density": 38.5
+      },
+      {
+        "depth": 100,
+        "pres": 101.1,
+        "temp": 17.94,
+        "psal": 34.2,
+        "density": 39.21
+      },
+      {
+        "depth": 125,
+        "pres": 126.4,
+        "temp": 14.68,
+        "psal": 34.57,
+        "density": 39.86
+      },
+      {
+        "depth": 150,
+        "pres": 151.5,
+        "temp": 11.39,
+        "psal": 34.75,
+        "density": 40.43
+      },
+      {
+        "depth": 200,
+        "pres": 201.8,
+        "temp": 7.19,
+        "psal": 35.02,
+        "density": 41.25
+      },
+      {
+        "depth": 250,
+        "pres": 252.6,
+        "temp": 5.26,
+        "psal": 35.04,
+        "density": 41.69
+      },
+      {
+        "depth": 300,
+        "pres": 302.9,
+        "temp": 4.58,
+        "psal": 35.07,
+        "density": 41.98
+      },
+      {
+        "depth": 400,
+        "pres": 404.1,
+        "temp": 4.19,
+        "psal": 35.1,
+        "density": 42.44
+      },
+      {
+        "depth": 500,
+        "pres": 504.9,
+        "temp": 4.16,
+        "psal": 35.12,
+        "density": 42.85
+      },
+      {
+        "depth": 600,
+        "pres": 605.9,
+        "temp": 4.16,
+        "psal": 35.1,
+        "density": 43.24
+      },
+      {
+        "depth": 750,
+        "pres": 757.7,
+        "temp": 4.17,
+        "psal": 35.06,
+        "density": 43.83
+      },
+      {
+        "depth": 1000,
+        "pres": 1010.0,
+        "temp": 4.2,
+        "psal": 35.08,
+        "density": 44.83
+      },
+      {
+        "depth": 1250,
+        "pres": 1262.6,
+        "temp": 4.19,
+        "psal": 35.09,
+        "density": 45.84
+      },
+      {
+        "depth": 1500,
+        "pres": 1514.9,
+        "temp": 4.24,
+        "psal": 35.08,
+        "density": 46.83
+      },
+      {
+        "depth": 1750,
+        "pres": 1767.3,
+        "temp": 4.19,
+        "psal": 35.03,
+        "density": 47.81
+      },
+      {
+        "depth": 2000,
+        "pres": 2020.0,
+        "temp": 4.27,
+        "psal": 35.15,
+        "density": 48.85
+      }
+    ]
+  },
+  {
+    "_id": "2902108_84",
+    "platform_number": "2902108",
+    "cycle_number": 84,
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        85.1,
+        19.8
+      ]
+    },
+    "date": "2024-05-16T15:50:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "data_mode": "D",
+    "data": [
+      {
+        "depth": 0,
+        "pres": -0.0,
+        "temp": 26.9,
+        "psal": 32.07,
+        "density": 36.84
+      },
+      {
+        "depth": 5,
+        "pres": 5.1,
+        "temp": 26.49,
+        "psal": 32.04,
+        "density": 36.9
+      },
+      {
+        "depth": 10,
+        "pres": 10.0,
+        "temp": 26.27,
+        "psal": 32.09,
+        "density": 36.97
+      },
+      {
+        "depth": 20,
+        "pres": 20.3,
+        "temp": 25.73,
+        "psal": 32.3,
+        "density": 37.16
+      },
+      {
+        "depth": 30,
+        "pres": 30.3,
+        "temp": 25.16,
+        "psal": 32.43,
+        "density": 37.32
+      },
+      {
+        "depth": 50,
+        "pres": 50.6,
+        "temp": 23.55,
+        "psal": 32.78,
+        "density": 37.74
+      },
+      {
+        "depth": 75,
+        "pres": 75.7,
+        "temp": 20.94,
+        "psal": 33.29,
+        "density": 38.37
+      },
+      {
+        "depth": 100,
+        "pres": 101.2,
+        "temp": 17.74,
+        "psal": 33.91,
+        "density": 39.11
+      },
+      {
+        "depth": 125,
+        "pres": 126.2,
+        "temp": 14.36,
+        "psal": 34.39,
+        "density": 39.82
+      },
+      {
+        "depth": 150,
+        "pres": 151.4,
+        "temp": 11.31,
+        "psal": 34.68,
+        "density": 40.41
+      },
+      {
+        "depth": 200,
+        "pres": 202.0,
+        "temp": 7.12,
+        "psal": 34.97,
+        "density": 41.23
+      },
+      {
+        "depth": 250,
+        "pres": 252.4,
+        "temp": 5.24,
+        "psal": 35.07,
+        "density": 41.7
+      },
+      {
+        "depth": 300,
+        "pres": 303.1,
+        "temp": 4.53,
+        "psal": 35.12,
+        "density": 42.01
+      },
+      {
+        "depth": 400,
+        "pres": 404.1,
+        "temp": 4.19,
+        "psal": 35.1,
+        "density": 42.44
+      },
+      {
+        "depth": 500,
+        "pres": 504.9,
+        "temp": 4.12,
+        "psal": 35.12,
+        "density": 42.85
+      },
+      {
+        "depth": 600,
+        "pres": 605.8,
+        "temp": 4.23,
+        "psal": 35.08,
+        "density": 43.22
+      },
+      {
+        "depth": 750,
+        "pres": 757.5,
+        "temp": 4.12,
+        "psal": 35.1,
+        "density": 43.85
+      },
+      {
+        "depth": 1000,
+        "pres": 1009.8,
+        "temp": 4.15,
+        "psal": 35.12,
+        "density": 44.85
+      },
+      {
+        "depth": 1250,
+        "pres": 1262.4,
+        "temp": 4.2,
+        "psal": 35.06,
+        "density": 45.82
+      },
+      {
+        "depth": 1500,
+        "pres": 1515.0,
+        "temp": 4.2,
+        "psal": 35.07,
+        "density": 46.83
+      },
+      {
+        "depth": 1750,
+        "pres": 1767.6,
+        "temp": 4.25,
+        "psal": 35.08,
+        "density": 47.82
+      },
+      {
+        "depth": 2000,
+        "pres": 2020.1,
+        "temp": 4.14,
+        "psal": 35.12,
+        "density": 48.85
+      }
+    ]
+  },
+  {
+    "_id": "2902109_37",
+    "platform_number": "2902109",
+    "cycle_number": 37,
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        94.8,
+        16.5
+      ]
+    },
+    "date": "2024-05-17T11:40:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "data_mode": "D",
+    "data": [
+      {
+        "depth": 0,
+        "pres": 0.0,
+        "temp": 26.76,
+        "psal": 32.09,
+        "density": 36.87
+      },
+      {
+        "depth": 5,
+        "pres": 5.0,
+        "temp": 26.49,
+        "psal": 32.14,
+        "density": 36.94
+      },
+      {
+        "depth": 10,
+        "pres": 10.1,
+        "temp": 26.35,
+        "psal": 32.19,
+        "density": 37.0
+      },
+      {
+        "depth": 20,
+        "pres": 20.2,
+        "temp": 25.75,
+        "psal": 32.28,
+        "density": 37.15
+      },
+      {
+        "depth": 30,
+        "pres": 30.3,
+        "temp": 25.16,
+        "psal": 32.42,
+        "density": 37.32
+      },
+      {
+        "depth": 50,
+        "pres": 50.5,
+        "temp": 23.68,
+        "psal": 32.8,
+        "density": 37.73
+      },
+      {
+        "depth": 75,
+        "pres": 75.5,
+        "temp": 21.04,
+        "psal": 33.31,
+        "density": 38.37
+      },
+      {
+        "depth": 100,
+        "pres": 101.0,
+        "temp": 17.75,
+        "psal": 33.85,
+        "density": 39.09
+      },
+      {
+        "depth": 125,
+        "pres": 126.3,
+        "temp": 14.42,
+        "psal": 34.43,
+        "density": 39.83
+      },
+      {
+        "depth": 150,
+        "pres": 151.3,
+        "temp": 11.32,
+        "psal": 34.73,
+        "density": 40.43
+      },
+      {
+        "depth": 200,
+        "pres": 201.9,
+        "temp": 7.13,
+        "psal": 35.02,
+        "density": 41.25
+      },
+      {
+        "depth": 250,
+        "pres": 252.5,
+        "temp": 5.3,
+        "psal": 35.08,
+        "density": 41.7
+      },
+      {
+        "depth": 300,
+        "pres": 303.0,
+        "temp": 4.59,
+        "psal": 35.16,
+        "density": 42.02
+      },
+      {
+        "depth": 400,
+        "pres": 403.9,
+        "temp": 4.25,
+        "psal": 35.09,
+        "density": 42.43
+      },
+      {
+        "depth": 500,
+        "pres": 505.0,
+        "temp": 4.25,
+        "psal": 35.07,
+        "density": 42.82
+      },
+      {
+        "depth": 600,
+        "pres": 606.0,
+        "temp": 4.18,
+        "psal": 35.11,
+        "density": 43.25
+      },
+      {
+        "depth": 750,
+        "pres": 757.5,
+        "temp": 4.25,
+        "psal": 35.08,
+        "density": 43.83
+      },
+      {
+        "depth": 1000,
+        "pres": 1010.0,
+        "temp": 4.15,
+        "psal": 35.09,
+        "density": 44.84
+      },
+      {
+        "depth": 1250,
+        "pres": 1262.6,
+        "temp": 4.24,
+        "psal": 35.07,
+        "density": 45.82
+      },
+      {
+        "depth": 1500,
+        "pres": 1515.2,
+        "temp": 4.27,
+        "psal": 35.11,
+        "density": 46.84
+      },
+      {
+        "depth": 1750,
+        "pres": 1767.3,
+        "temp": 4.16,
+        "psal": 35.06,
+        "density": 47.83
+      },
+      {
+        "depth": 2000,
+        "pres": 2020.0,
+        "temp": 4.27,
+        "psal": 35.12,
+        "density": 48.84
+      }
+    ]
+  },
+  {
+    "_id": "2902110_50",
+    "platform_number": "2902110",
+    "cycle_number": 50,
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        81.6,
+        16.9
+      ]
+    },
+    "date": "2024-05-18T08:00:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "data_mode": "D",
+    "data": [
+      {
+        "depth": 0,
+        "pres": 0.0,
+        "temp": 26.77,
+        "psal": 32.42,
+        "density": 37.0
+      },
+      {
+        "depth": 5,
+        "pres": 5.1,
+        "temp": 26.47,
+        "psal": 32.46,
+        "density": 37.08
+      },
+      {
+        "depth": 10,
+        "pres": 10.3,
+        "temp": 26.17,
+        "psal": 32.51,
+        "density": 37.15
+      },
+      {
+        "depth": 20,
+        "pres": 20.1,
+        "temp": 25.75,
+        "psal": 32.64,
+        "density": 37.3
+      },
+      {
+        "depth": 30,
+        "pres": 30.3,
+        "temp": 25.02,
+        "psal": 32.71,
+        "density": 37.46
+      },
+      {
+        "depth": 50,
+        "pres": 50.7,
+        "temp": 23.56,
+        "psal": 32.97,
+        "density": 37.82
+      },
+      {
+        "depth": 75,
+        "pres": 75.6,
+        "temp": 20.91,
+        "psal": 33.5,
+        "density": 38.46
+      },
+      {
+        "depth": 100,
+        "pres": 101.0,
+        "temp": 17.66,
+        "psal": 34.06,
+        "density": 39.18
+      },
+      {
+        "depth": 125,
+        "pres": 126.2,
+        "temp": 14.32,
+        "psal": 34.42,
+        "density": 39.84
+      },
+      {
+        "depth": 150,
+        "pres": 151.3,
+        "temp": 11.39,
+        "psal": 34.74,
+        "density": 40.42
+      },
+      {
+        "depth": 200,
+        "pres": 201.7,
+        "temp": 7.1,
+        "psal": 35.0,
+        "density": 41.25
+      },
+      {
+        "depth": 250,
+        "pres": 252.6,
+        "temp": 5.24,
+        "psal": 35.07,
+        "density": 41.7
+      },
+      {
+        "depth": 300,
+        "pres": 303.0,
+        "temp": 4.65,
+        "psal": 35.13,
+        "density": 42.0
+      },
+      {
+        "depth": 400,
+        "pres": 404.0,
+        "temp": 4.18,
+        "psal": 35.18,
+        "density": 42.47
+      },
+      {
+        "depth": 500,
+        "pres": 505.0,
+        "temp": 4.2,
+        "psal": 35.1,
+        "density": 42.84
+      },
+      {
+        "depth": 600,
+        "pres": 605.9,
+        "temp": 4.19,
+        "psal": 35.08,
+        "density": 43.23
+      },
+      {
+        "depth": 750,
+        "pres": 757.4,
+        "temp": 4.2,
+        "psal": 35.08,
+        "density": 43.83
+      },
+      {
+        "depth": 1000,
+        "pres": 1010.2,
+        "temp": 4.21,
+        "psal": 35.09,
+        "density": 44.83
+      },
+      {
+        "depth": 1250,
+        "pres": 1262.6,
+        "temp": 4.07,
+        "psal": 35.13,
+        "density": 45.87
+      },
+      {
+        "depth": 1500,
+        "pres": 1515.0,
+        "temp": 4.1,
+        "psal": 35.09,
+        "density": 46.85
+      },
+      {
+        "depth": 1750,
+        "pres": 1767.4,
+        "temp": 4.13,
+        "psal": 35.08,
+        "density": 47.84
+      },
+      {
+        "depth": 2000,
+        "pres": 2020.1,
+        "temp": 4.29,
+        "psal": 35.13,
+        "density": 48.84
+      }
+    ]
+  },
+  {
+    "_id": "2902111_63",
+    "platform_number": "2902111",
+    "cycle_number": 63,
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        87.4,
+        10.8
+      ]
+    },
+    "date": "2024-05-19T14:30:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "data_mode": "D",
+    "data": [
+      {
+        "depth": 0,
+        "pres": -0.1,
+        "temp": 26.97,
+        "psal": 33.35,
+        "density": 37.37
+      },
+      {
+        "depth": 5,
+        "pres": 5.0,
+        "temp": 26.82,
+        "psal": 33.35,
+        "density": 37.41
+      },
+      {
+        "depth": 10,
+        "pres": 10.1,
+        "temp": 26.59,
+        "psal": 33.4,
+        "density": 37.48
+      },
+      {
+        "depth": 20,
+        "pres": 20.3,
+        "temp": 26.08,
+        "psal": 33.42,
+        "density": 37.59
+      },
+      {
+        "depth": 30,
+        "pres": 30.3,
+        "temp": 25.42,
+        "psal": 33.52,
+        "density": 37.75
+      },
+      {
+        "depth": 50,
+        "pres": 50.5,
+        "temp": 23.74,
+        "psal": 33.76,
+        "density": 38.13
+      },
+      {
+        "depth": 75,
+        "pres": 75.7,
+        "temp": 21.15,
+        "psal": 34.09,
+        "density": 38.68
+      },
+      {
+        "depth": 100,
+        "pres": 101.1,
+        "temp": 17.89,
+        "psal": 34.35,
+        "density": 39.28
+      },
+      {
+        "depth": 125,
+        "pres": 126.0,
+        "temp": 14.48,
+        "psal": 34.73,
+        "density": 39.95
+      },
+      {
+        "depth": 150,
+        "pres": 151.5,
+        "temp": 11.5,
+        "psal": 34.87,
+        "density": 40.47
+      },
+      {
+        "depth": 200,
+        "pres": 202.0,
+        "temp": 7.13,
+        "psal": 35.05,
+        "density": 41.27
+      },
+      {
+        "depth": 250,
+        "pres": 252.5,
+        "temp": 5.31,
+        "psal": 35.09,
+        "density": 41.7
+      },
+      {
+        "depth": 300,
+        "pres": 303.0,
+        "temp": 4.54,
+        "psal": 35.09,
+        "density": 41.99
+      },
+      {
+        "depth": 400,
+        "pres": 404.1,
+        "temp": 4.15,
+        "psal": 35.06,
+        "density": 42.43
+      },
+      {
+        "depth": 500,
+        "pres": 505.0,
+        "temp": 4.21,
+        "psal": 35.09,
+        "density": 42.83
+      },
+      {
+        "depth": 600,
+        "pres": 605.9,
+        "temp": 4.22,
+        "psal": 35.08,
+        "density": 43.23
+      },
+      {
+        "depth": 750,
+        "pres": 757.5,
+        "temp": 4.21,
+        "psal": 35.07,
+        "density": 43.82
+      },
+      {
+        "depth": 1000,
+        "pres": 1010.0,
+        "temp": 4.11,
+        "psal": 35.13,
+        "density": 44.86
+      },
+      {
+        "depth": 1250,
+        "pres": 1262.7,
+        "temp": 4.21,
+        "psal": 35.13,
+        "density": 45.85
+      },
+      {
+        "depth": 1500,
+        "pres": 1514.9,
+        "temp": 4.25,
+        "psal": 35.04,
+        "density": 46.81
+      },
+      {
+        "depth": 1750,
+        "pres": 1767.6,
+        "temp": 4.17,
+        "psal": 35.1,
+        "density": 47.84
+      },
+      {
+        "depth": 2000,
+        "pres": 2019.9,
+        "temp": 4.16,
+        "psal": 35.11,
+        "density": 48.84
+      }
+    ]
+  },
+  {
+    "_id": "2902112_45",
+    "platform_number": "2902112",
+    "cycle_number": 45,
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        92.5,
+        7.4
+      ]
+    },
+    "date": "2024-05-20T01:10:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "data_mode": "D",
+    "data": [
+      {
+        "depth": 0,
+        "pres": -0.1,
+        "temp": 27.09,
+        "psal": 33.6,
+        "density": 37.46
+      },
+      {
+        "depth": 5,
+        "pres": 5.3,
+        "temp": 26.98,
+        "psal": 33.63,
+        "density": 37.51
+      },
+      {
+        "depth": 10,
+        "pres": 10.0,
+        "temp": 26.72,
+        "psal": 33.69,
+        "density": 37.58
+      },
+      {
+        "depth": 20,
+        "pres": 20.2,
+        "temp": 26.19,
+        "psal": 33.72,
+        "density": 37.7
+      },
+      {
+        "depth": 30,
+        "pres": 30.4,
+        "temp": 25.65,
+        "psal": 33.8,
+        "density": 37.84
+      },
+      {
+        "depth": 50,
+        "pres": 50.7,
+        "temp": 23.9,
+        "psal": 33.97,
+        "density": 38.2
+      },
+      {
+        "depth": 75,
+        "pres": 75.8,
+        "temp": 21.25,
+        "psal": 34.29,
+        "density": 38.75
+      },
+      {
+        "depth": 100,
+        "pres": 101.1,
+        "temp": 18.02,
+        "psal": 34.54,
+        "density": 39.34
+      },
+      {
+        "depth": 125,
+        "pres": 126.2,
+        "temp": 14.64,
+        "psal": 34.7,
+        "density": 39.92
+      },
+      {
+        "depth": 150,
+        "pres": 151.6,
+        "temp": 11.45,
+        "psal": 34.91,
+        "density": 40.49
+      },
+      {
+        "depth": 200,
+        "pres": 202.0,
+        "temp": 7.18,
+        "psal": 35.01,
+        "density": 41.24
+      },
+      {
+        "depth": 250,
+        "pres": 252.6,
+        "temp": 5.29,
+        "psal": 35.1,
+        "density": 41.71
+      },
+      {
+        "depth": 300,
+        "pres": 303.0,
+        "temp": 4.6,
+        "psal": 35.11,
+        "density": 41.99
+      },
+      {
+        "depth": 400,
+        "pres": 404.0,
+        "temp": 4.16,
+        "psal": 35.11,
+        "density": 42.45
+      },
+      {
+        "depth": 500,
+        "pres": 504.9,
+        "temp": 4.22,
+        "psal": 35.06,
+        "density": 42.82
+      },
+      {
+        "depth": 600,
+        "pres": 606.1,
+        "temp": 4.25,
+        "psal": 35.1,
+        "density": 43.23
+      },
+      {
+        "depth": 750,
+        "pres": 757.6,
+        "temp": 4.2,
+        "psal": 35.1,
+        "density": 43.84
+      },
+      {
+        "depth": 1000,
+        "pres": 1010.0,
+        "temp": 4.17,
+        "psal": 35.1,
+        "density": 44.84
+      },
+      {
+        "depth": 1250,
+        "pres": 1262.5,
+        "temp": 4.18,
+        "psal": 35.09,
+        "density": 45.84
+      },
+      {
+        "depth": 1500,
+        "pres": 1514.9,
+        "temp": 4.18,
+        "psal": 35.14,
+        "density": 46.86
+      },
+      {
+        "depth": 1750,
+        "pres": 1767.6,
+        "temp": 4.19,
+        "psal": 35.09,
+        "density": 47.83
+      },
+      {
+        "depth": 2000,
+        "pres": 2019.9,
+        "temp": 4.21,
+        "psal": 35.13,
+        "density": 48.85
+      }
+    ]
+  },
+  {
+    "_id": "2902113_29",
+    "platform_number": "2902113",
+    "cycle_number": 29,
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        83.9,
+        18.0
+      ]
+    },
+    "date": "2024-05-14T23:55:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "data_mode": "D",
+    "data": [
+      {
+        "depth": 0,
+        "pres": -0.1,
+        "temp": 26.96,
+        "psal": 32.29,
+        "density": 36.93
+      },
+      {
+        "depth": 5,
+        "pres": 5.0,
+        "temp": 26.81,
+        "psal": 32.36,
+        "density": 37.0
+      },
+      {
+        "depth": 10,
+        "pres": 10.3,
+        "temp": 26.49,
+        "psal": 32.38,
+        "density": 37.06
+      },
+      {
+        "depth": 20,
+        "pres": 20.2,
+        "temp": 25.95,
+        "psal": 32.43,
+        "density": 37.19
+      },
+      {
+        "depth": 30,
+        "pres": 30.2,
+        "temp": 25.29,
+        "psal": 32.54,
+        "density": 37.35
+      },
+      {
+        "depth": 50,
+        "pres": 50.5,
+        "temp": 23.73,
+        "psal": 32.9,
+        "density": 37.77
+      },
+      {
+        "depth": 75,
+        "pres": 75.8,
+        "temp": 21.22,
+        "psal": 33.39,
+        "density": 38.38
+      },
+      {
+        "depth": 100,
+        "pres": 101.1,
+        "temp": 17.92,
+        "psal": 33.97,
+        "density": 39.12
+      },
+      {
+        "depth": 125,
+        "pres": 126.3,
+        "temp": 14.47,
+        "psal": 34.43,
+        "density": 39.83
+      },
+      {
+        "depth": 150,
+        "pres": 151.7,
+        "temp": 11.43,
+        "psal": 34.73,
+        "density": 40.42
+      },
+      {
+        "depth": 200,
+        "pres": 201.9,
+        "temp": 7.12,
+        "psal": 34.99,
+        "density": 41.24
+      },
+      {
+        "depth": 250,
+        "pres": 252.6,
+        "temp": 5.23,
+        "psal": 35.06,
+        "density": 41.7
+      },
+      {
+        "depth": 300,
+        "pres": 302.9,
+        "temp": 4.63,
+        "psal": 35.08,
+        "density": 41.98
+      },
+      {
+        "depth": 400,
+        "pres": 404.1,
+        "temp": 4.26,
+        "psal": 35.08,
+        "density": 42.42
+      },
+      {
+        "depth": 500,
+        "pres": 505.2,
+        "temp": 4.21,
+        "psal": 35.05,
+        "density": 42.82
+      },
+      {
+        "depth": 600,
+        "pres": 606.0,
+        "temp": 4.29,
+        "psal": 35.08,
+        "density": 43.22
+      },
+      {
+        "depth": 750,
+        "pres": 757.6,
+        "temp": 4.21,
+        "psal": 35.11,
+        "density": 43.84
+      },
+      {
+        "depth": 1000,
+        "pres": 1009.9,
+        "temp": 4.3,
+        "psal": 35.09,
+        "density": 44.82
+      },
+      {
+        "depth": 1250,
+        "pres": 1262.5,
+        "temp": 4.13,
+        "psal": 35.08,
+        "density": 45.84
+      },
+      {
+        "depth": 1500,
+        "pres": 1515.0,
+        "temp": 4.29,
+        "psal": 35.08,
+        "density": 46.82
+      },
+      {
+        "depth": 1750,
+        "pres": 1767.8,
+        "temp": 4.2,
+        "psal": 35.14,
+        "density": 47.85
+      },
+      {
+        "depth": 2000,
+        "pres": 2020.1,
+        "temp": 4.17,
+        "psal": 35.09,
+        "density": 48.84
+      }
+    ]
+  },
+  {
+    "_id": "2902114_53",
+    "platform_number": "2902114",
+    "cycle_number": 53,
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        95.2,
+        9.8
+      ]
+    },
+    "date": "2024-05-16T07:25:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "data_mode": "D",
+    "data": [
+      {
+        "depth": 0,
+        "pres": 0.1,
+        "temp": 27.63,
+        "psal": 33.46,
+        "density": 37.34
+      },
+      {
+        "depth": 5,
+        "pres": 5.1,
+        "temp": 27.44,
+        "psal": 33.52,
+        "density": 37.41
+      },
+      {
+        "depth": 10,
+        "pres": 10.2,
+        "temp": 27.2,
+        "psal": 33.56,
+        "density": 37.47
+      },
+      {
+        "depth": 20,
+        "pres": 20.2,
+        "temp": 26.63,
+        "psal": 33.58,
+        "density": 37.59
+      },
+      {
+        "depth": 30,
+        "pres": 30.3,
+        "temp": 26.02,
+        "psal": 33.63,
+        "density": 37.72
+      },
+      {
+        "depth": 50,
+        "pres": 50.6,
+        "temp": 24.31,
+        "psal": 33.84,
+        "density": 38.1
+      },
+      {
+        "depth": 75,
+        "pres": 75.6,
+        "temp": 21.64,
+        "psal": 34.14,
+        "density": 38.64
+      },
+      {
+        "depth": 100,
+        "pres": 101.2,
+        "temp": 18.36,
+        "psal": 34.47,
+        "density": 39.28
+      },
+      {
+        "depth": 125,
+        "pres": 126.3,
+        "temp": 14.8,
+        "psal": 34.72,
+        "density": 39.91
+      },
+      {
+        "depth": 150,
+        "pres": 151.5,
+        "temp": 11.69,
+        "psal": 34.88,
+        "density": 40.45
+      },
+      {
+        "depth": 200,
+        "pres": 202.0,
+        "temp": 7.26,
+        "psal": 35.05,
+        "density": 41.25
+      },
+      {
+        "depth": 250,
+        "pres": 252.4,
+        "temp": 5.29,
+        "psal": 35.12,
+        "density": 41.71
+      },
+      {
+        "depth": 300,
+        "pres": 303.1,
+        "temp": 4.57,
+        "psal": 35.08,
+        "density": 41.98
+      },
+      {
+        "depth": 400,
+        "pres": 404.0,
+        "temp": 4.16,
+        "psal": 35.08,
+        "density": 42.44
+      },
+      {
+        "depth": 500,
+        "pres": 504.9,
+        "temp": 4.28,
+        "psal": 35.1,
+        "density": 42.83
+      },
+      {
+        "depth": 600,
+        "pres": 605.8,
+        "temp": 4.29,
+        "psal": 35.06,
+        "density": 43.21
+      },
+      {
+        "depth": 750,
+        "pres": 757.4,
+        "temp": 4.22,
+        "psal": 35.08,
+        "density": 43.83
+      },
+      {
+        "depth": 1000,
+        "pres": 1009.9,
+        "temp": 4.24,
+        "psal": 35.11,
+        "density": 44.84
+      },
+      {
+        "depth": 1250,
+        "pres": 1262.6,
+        "temp": 4.14,
+        "psal": 35.13,
+        "density": 45.86
+      },
+      {
+        "depth": 1500,
+        "pres": 1514.9,
+        "temp": 4.2,
+        "psal": 35.16,
+        "density": 46.86
+      },
+      {
+        "depth": 1750,
+        "pres": 1767.5,
+        "temp": 4.12,
+        "psal": 35.08,
+        "density": 47.84
+      },
+      {
+        "depth": 2000,
+        "pres": 2020.0,
+        "temp": 4.21,
+        "psal": 35.09,
+        "density": 48.83
+      }
+    ]
+  },
+  {
+    "_id": "2902115_41",
+    "platform_number": "2902115",
+    "cycle_number": 41,
+    "geolocation": {
+      "type": "Point",
+      "coordinates": [
+        88.0,
+        20.5
+      ]
+    },
+    "date": "2024-05-18T16:00:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "data_mode": "D",
+    "data": [
+      {
+        "depth": 0,
+        "pres": 0.0,
+        "temp": 26.91,
+        "psal": 31.73,
+        "density": 36.7
+      },
+      {
+        "depth": 5,
+        "pres": 5.1,
+        "temp": 26.72,
+        "psal": 31.76,
+        "density": 36.75
+      },
+      {
+        "depth": 10,
+        "pres": 10.1,
+        "temp": 26.5,
+        "psal": 31.83,
+        "density": 36.83
+      },
+      {
+        "depth": 20,
+        "pres": 20.3,
+        "temp": 25.98,
+        "psal": 31.92,
+        "density": 36.97
+      },
+      {
+        "depth": 30,
+        "pres": 30.3,
+        "temp": 25.28,
+        "psal": 32.13,
+        "density": 37.18
+      },
+      {
+        "depth": 50,
+        "pres": 50.4,
+        "temp": 23.66,
+        "psal": 32.47,
+        "density": 37.6
+      },
+      {
+        "depth": 75,
+        "pres": 75.7,
+        "temp": 21.15,
+        "psal": 33.07,
+        "density": 38.25
+      },
+      {
+        "depth": 100,
+        "pres": 100.8,
+        "temp": 17.81,
+        "psal": 33.73,
+        "density": 39.03
+      },
+      {
+        "depth": 125,
+        "pres": 126.3,
+        "temp": 14.42,
+        "psal": 34.31,
+        "density": 39.78
+      },
+      {
+        "depth": 150,
+        "pres": 151.5,
+        "temp": 11.41,
+        "psal": 34.62,
+        "density": 40.37
+      },
+      {
+        "depth": 200,
+        "pres": 202.2,
+        "temp": 7.14,
+        "psal": 34.95,
+        "density": 41.22
+      },
+      {
+        "depth": 250,
+        "pres": 252.5,
+        "temp": 5.3,
+        "psal": 35.06,
+        "density": 41.69
+      },
+      {
+        "depth": 300,
+        "pres": 303.0,
+        "temp": 4.57,
+        "psal": 35.03,
+        "density": 41.97
+      },
+      {
+        "depth": 400,
+        "pres": 404.0,
+        "temp": 4.21,
+        "psal": 35.07,
+        "density": 42.42
+      },
+      {
+        "depth": 500,
+        "pres": 504.9,
+        "temp": 4.29,
+        "psal": 35.12,
+        "density": 42.83
+      },
+      {
+        "depth": 600,
+        "pres": 606.1,
+        "temp": 4.23,
+        "psal": 35.14,
+        "density": 43.25
+      },
+      {
+        "depth": 750,
+        "pres": 757.6,
+        "temp": 4.2,
+        "psal": 35.08,
+        "density": 43.83
+      },
+      {
+        "depth": 1000,
+        "pres": 1010.1,
+        "temp": 4.22,
+        "psal": 35.13,
+        "density": 44.85
+      },
+      {
+        "depth": 1250,
+        "pres": 1262.6,
+        "temp": 4.25,
+        "psal": 35.08,
+        "density": 45.82
+      },
+      {
+        "depth": 1500,
+        "pres": 1514.9,
+        "temp": 4.21,
+        "psal": 35.16,
+        "density": 46.86
+      },
+      {
+        "depth": 1750,
+        "pres": 1767.4,
+        "temp": 4.29,
+        "psal": 35.11,
+        "density": 47.83
+      },
+      {
+        "depth": 2000,
+        "pres": 2020.0,
+        "temp": 4.18,
+        "psal": 35.09,
+        "density": 48.84
+      }
+    ]
+  }
+]

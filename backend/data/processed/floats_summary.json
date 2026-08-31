@@ -1,0 +1,152 @@
+[
+  {
+    "id": "2902101_42",
+    "platform_number": "2902101",
+    "cycle": 42,
+    "lon": 84.5,
+    "lat": 12.8,
+    "date": "2024-05-15T06:00:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "max_depth": 2000
+  },
+  {
+    "id": "2902102_58",
+    "platform_number": "2902102",
+    "cycle": 58,
+    "lon": 88.2,
+    "lat": 15.4,
+    "date": "2024-05-16T12:30:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "max_depth": 2000
+  },
+  {
+    "id": "2902103_31",
+    "platform_number": "2902103",
+    "cycle": 31,
+    "lon": 91.8,
+    "lat": 18.2,
+    "date": "2024-05-14T09:15:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "max_depth": 2000
+  },
+  {
+    "id": "2902104_65",
+    "platform_number": "2902104",
+    "cycle": 65,
+    "lon": 82.3,
+    "lat": 9.5,
+    "date": "2024-05-17T03:45:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "max_depth": 2000
+  },
+  {
+    "id": "2902105_24",
+    "platform_number": "2902105",
+    "cycle": 24,
+    "lon": 86.7,
+    "lat": 8.1,
+    "date": "2024-05-18T18:20:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "max_depth": 2000
+  },
+  {
+    "id": "2902106_72",
+    "platform_number": "2902106",
+    "cycle": 72,
+    "lon": 93.4,
+    "lat": 11.2,
+    "date": "2024-05-15T21:00:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "max_depth": 2000
+  },
+  {
+    "id": "2902107_19",
+    "platform_number": "2902107",
+    "cycle": 19,
+    "lon": 89.9,
+    "lat": 13.6,
+    "date": "2024-05-19T04:10:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "max_depth": 2000
+  },
+  {
+    "id": "2902108_84",
+    "platform_number": "2902108",
+    "cycle": 84,
+    "lon": 85.1,
+    "lat": 19.8,
+    "date": "2024-05-16T15:50:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "max_depth": 2000
+  },
+  {
+    "id": "2902109_37",
+    "platform_number": "2902109",
+    "cycle": 37,
+    "lon": 94.8,
+    "lat": 16.5,
+    "date": "2024-05-17T11:40:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "max_depth": 2000
+  },
+  {
+    "id": "2902110_50",
+    "platform_number": "2902110",
+    "cycle": 50,
+    "lon": 81.6,
+    "lat": 16.9,
+    "date": "2024-05-18T08:00:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "max_depth": 2000
+  },
+  {
+    "id": "2902111_63",
+    "platform_number": "2902111",
+    "cycle": 63,
+    "lon": 87.4,
+    "lat": 10.8,
+    "date": "2024-05-19T14:30:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "max_depth": 2000
+  },
+  {
+    "id": "2902112_45",
+    "platform_number": "2902112",
+    "cycle": 45,
+    "lon": 92.5,
+    "lat": 7.4,
+    "date": "2024-05-20T01:10:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "max_depth": 2000
+  },
+  {
+    "id": "2902113_29",
+    "platform_number": "2902113",
+    "cycle": 29,
+    "lon": 83.9,
+    "lat": 18.0,
+    "date": "2024-05-14T23:55:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "max_depth": 2000
+  },
+  {
+    "id": "2902114_53",
+    "platform_number": "2902114",
+    "cycle": 53,
+    "lon": 95.2,
+    "lat": 9.8,
+    "date": "2024-05-16T07:25:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "max_depth": 2000
+  },
+  {
+    "id": "2902115_41",
+    "platform_number": "2902115",
+    "cycle": 41,
+    "lon": 88.0,
+    "lat": 20.5,
+    "date": "2024-05-18T16:00:00Z",
+    "institution": "INCOIS (Indian National Centre for Ocean Information Services)",
+    "max_depth": 2000
+  }
+]
