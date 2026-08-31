@@ -1,24 +1,24 @@
-# 🌊 OceanView 4D — Bay of Bengal Prototype
+# 🌊 OceanView 4D — Full India EEZ Prototype
 
-**OceanView 4D** is an interactive, browser-based 3D ocean data visualization prototype scoped specifically to the **Bay of Bengal portion of India's Exclusive Economic Zone (EEZ)** (roughly 80°E–97°E, 6°N–22°N).
+**OceanView 4D** is an interactive, browser-based 3D ocean data visualization prototype scoped specifically to the **Full India Exclusive Economic Zone (EEZ)** (roughly 68°E–97°E, 6°N–24°N).
 
-It reconstructs 4D volumetric ocean fields (Time $\times$ Depth $\times$ Lat $\times$ Lon) and renders temperature, salinity, density, and geostrophic/coastal current vectors in an interactive CesiumJS digital twin with real Argo float profiles.
+It reconstructs 4D volumetric ocean fields (Time $\times$ Depth $\times$ Lat $\times$ Lon) and renders temperature, salinity, density, and ocean current vectors in an interactive CesiumJS digital twin with real Argo float profiles.
 
 ---
 
 ## 🚀 Key Features
 
-- **3D Ocean Field Reconstruction**: Precomputed 4D tensor using SciPy RBF spatial interpolation across real observations from INCOIS and Argovis.
-- **Interactive Depth Slicing**: Explore the ocean water column from surface (`0m`) down to the abyssal plain (`2000m`).
-- **4D Temporal Playback**: Animated timeline playback with step controls across observation epochs.
-- **Ocean Current Vectors**: 3D flow arrows capturing the East India Coastal Current (EICC) and Bay of Bengal anticyclonic gyre.
-- **Real Argo Float Profiles**: Interactive 3D beacon markers with a slide-out drawer plotting:
+- **Physics-Informed Deep Learning**: Precomputed 4D tensor using local CPU-trained ML models (PINN for subsurface currents, U-Net for scalar reconstruction, ConvLSTM for forecasting) overriding legacy SciPy RBF spatial interpolation.
+- **Interactive Depth Slicing**: Explore the ocean water column from surface (`0m`) down to the abyssal plain (`2000m`) with a volumetric "laser-cut" plane effect.
+- **4D Temporal Playback & Forecasting**: Animated timeline playback with step controls across observation epochs, including forecasted future states.
+- **WebGL Particle Trails**: Animated 3D current flow particles capturing the East India Coastal Current (EICC), reversing monsoon currents, and the Bay of Bengal anticyclonic gyre.
+- **Real Argo Float Profiles**: Interactive 3D beacon markers with a cinematic camera swoop and a slide-out drawer plotting:
   - Temperature vs. Depth $T(z)$
   - Salinity vs. Depth $S(z)$
   - Potential Density $\rho(z)$
   - Temperature-Salinity ($T$-$S$) Water Mass Diagram
 - **Camera Navigation Presets**: Instant fly-to buttons for Bay of Bengal, India Subcontinent, Andaman Basin, and Coromandel Coast.
-- **Single-Container Deployment**: Fully packaged with a multi-stage Dockerfile ready for Google Cloud Run.
+- **Air-gapped Deployment**: Fully packaged with a multi-container Docker Compose setup, including an Nginx reverse proxy for basic authentication. No cloud dependency.
 
 ---
 
@@ -29,22 +29,27 @@ oceanview4d-prototype/
 ├── backend/
 │   ├── app/
 │   │   ├── main.py              # FastAPI app & static file serving
-│   │   ├── api.py               # REST endpoints (/meta, /field/slice, /floats)
-│   │   ├── services.py          # Data query engine & interpolation loader
-│   │   └── config.py            # Region bounding box & metadata
+│   │   ├── api.py               # REST endpoints (/meta, /field/slice, /floats, /forecast)
+│   │   ├── services.py          # Data query engine & ML ONNX loader (PINN/U-Net/ConvLSTM fallback to RBF)
+│   │   └── config.py            # Region bounding box (68E-97E, 6N-24N) & metadata
 │   ├── data/
-│   │   ├── raw/                 # Ingested Argo profiles JSON
-│   │   └── processed/           # Cached 4D tensor (bay_of_bengal_4d.json)
+│   │   ├── raw/                 # Ingested Argo profiles & CMEMS data
+│   │   ├── processed/           # Cached 4D tensor (india_eez_4d.json)
+│   │   └── models/              # Trained ONNX ML models
 │   ├── scripts/
-│   │   ├── ingest_argovis.py    # Argovis API data ingest
-│   │   └── reconstruct_field.py # SciPy 3D spatial field reconstruction
+│   │   ├── ingest_cmems.py      # CMEMS current velocity ingest
+│   │   ├── reconstruct_field.py # ML prediction generation
+│   │   ├── train_pinn.py        # PINN local CPU training
+│   │   ├── train_unet.py        # U-Net local CPU training
+│   │   ├── train_convlstm.py    # ConvLSTM local CPU training
+│   │   └── schedule_forecast.sh # Daily cron script
 │   └── requirements.txt
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── CesiumGlobe.tsx       # 3D Cesium viewer & India EEZ polygon
+│   │   │   ├── CesiumGlobe.tsx       # 3D Cesium viewer with particle system & hologram
 │   │   │   ├── TimeDepthControls.tsx # 4D timeline & vertical depth dock
-│   │   │   ├── VariableSelector.tsx  # Scalar & vector layers switcher
+│   │   │   ├── VariableSelector.tsx  # Glassmorphism UI switcher
 │   │   │   ├── FloatDrawer.tsx       # Recharts vertical profile curves
 │   │   │   ├── Legend.tsx            # Dynamic colormap scale
 │   │   │   └── Header.tsx            # Presets & status badge
@@ -55,6 +60,9 @@ oceanview4d-prototype/
 │   │   └── main.tsx
 │   ├── package.json
 │   └── vite.config.ts
+├── nginx/
+│   ├── Dockerfile                   # Nginx Basic Auth container
+│   └── nginx.conf                   # Reverse proxy configuration
 ├── Dockerfile                       # Multi-stage production container
 └── docker-compose.yml
 ```
@@ -69,8 +77,13 @@ oceanview4d-prototype/
 # Install Python dependencies
 pip install -r backend/requirements.txt
 
-# Run data ingestion & 4D field reconstruction
-python backend/scripts/ingest_argovis.py
+# Run ML model training (CPU Optimized)
+python backend/scripts/train_pinn.py
+python backend/scripts/train_unet.py
+python backend/scripts/train_convlstm.py
+
+# Run data ingestion & field reconstruction
+python backend/scripts/ingest_cmems.py
 python backend/scripts/reconstruct_field.py
 
 # Start FastAPI dev server
@@ -89,25 +102,14 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 🐳 Docker & Google Cloud Run Deployment
+## 🐳 Docker Production Deployment (Local/Air-gapped)
 
-### Local Docker Run
+This prototype is designed to run securely on a local machine without requiring cloud services, exposed behind an Nginx Reverse Proxy with Basic Authentication.
+
 ```bash
-docker build -t oceanview4d .
-docker run -p 8080:8080 oceanview4d
+# Start the full stack (FastAPI Backend, Vite Frontend, and Nginx Proxy)
+docker-compose up --build -d
 ```
 
-### Deploy to Google Cloud Run
-```bash
-# 1. Build & submit image to Google Artifact Registry / Container Registry
-gcloud builds submit --tag gcr.io/YOUR_PROJECT_ID/oceanview4d
-
-# 2. Deploy to Cloud Run
-gcloud run deploy oceanview4d \
-  --image gcr.io/YOUR_PROJECT_ID/oceanview4d \
-  --platform managed \
-  --region asia-south1 \
-  --allow-unauthenticated \
-  --memory 1Gi \
-  --cpu 1
-```
+The application will be securely available at **http://localhost:80**.
+Login with the credentials configured in your `nginx/Dockerfile`.

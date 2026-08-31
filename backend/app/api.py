@@ -1,3 +1,4 @@
+import os
 from fastapi import APIRouter, HTTPException, Query
 from typing import Optional
 from .services import ocean_service
@@ -34,3 +35,14 @@ async def get_float_profile(float_id: str):
     if not profile:
         raise HTTPException(status_code=404, detail="Float profile not found")
     return profile
+
+
+@router.get("/forecast")
+async def get_forecast():
+    """Retrieve 5-day ConvLSTM forecast of ocean conditions."""
+    forecast_path = os.path.join(ocean_service.pinn_model_path.replace("models/pinn_india_eez.onnx", "data/processed"), "forecast_5d.json")
+    if os.path.exists(forecast_path):
+        import json
+        with open(forecast_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {"status": "Forecast not yet generated. Run train_convlstm.py first."}

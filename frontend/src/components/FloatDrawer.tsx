@@ -13,29 +13,26 @@ import {
   ZAxis
 } from 'recharts';
 import { FloatSummary, FloatProfile } from '../types/ocean';
-import { fetchFloatProfile } from '../services/api';
 
 interface FloatDrawerProps {
   selectedFloat: FloatSummary | null;
+  profile: FloatProfile | null;
+  loading: boolean;
   onClose: () => void;
 }
 
-export const FloatDrawer: React.FC<FloatDrawerProps> = ({ selectedFloat, onClose }) => {
-  const [profile, setProfile] = useState<FloatProfile | null>(null);
-  const [loading, setLoading] = useState(false);
+export const FloatDrawer: React.FC<FloatDrawerProps> = ({ selectedFloat, profile, loading, onClose }) => {
   const [activeTab, setActiveTab] = useState<'temp' | 'salinity' | 'density' | 'ts'>('temp');
+  
+  // Expose an event to the global window object to tell Cesium to toggle 3D mode
+  const [is3DMode, setIs3DMode] = useState(false);
 
   useEffect(() => {
-    if (selectedFloat) {
-      setLoading(true);
-      fetchFloatProfile(selectedFloat.id)
-        .then((data) => setProfile(data))
-        .catch((err) => console.error(err))
-        .finally(() => setLoading(false));
-    } else {
-      setProfile(null);
-    }
-  }, [selectedFloat]);
+    const event = new CustomEvent('toggle3DHologram', { detail: { enabled: is3DMode } });
+    window.dispatchEvent(event);
+  }, [is3DMode]);
+
+
 
   if (!selectedFloat) return null;
 
@@ -93,8 +90,26 @@ export const FloatDrawer: React.FC<FloatDrawerProps> = ({ selectedFloat, onClose
         </div>
       </div>
 
-      {/* Chart Tabs */}
-      <div className="flex border-b border-slate-800 bg-navy-950/40 p-1 gap-1">
+      {/* 2D vs 3D Mode Switcher */}
+      <div className="p-3 bg-navy-950/80 border-b border-slate-800 flex items-center justify-between">
+        <span className="text-xs text-slate-300 font-medium">Visualization Mode</span>
+        <button
+          onClick={() => setIs3DMode(!is3DMode)}
+          className={`relative inline-flex h-5 w-10 items-center rounded-full transition-colors ${
+            is3DMode ? 'bg-cyan-500' : 'bg-slate-700'
+          }`}
+        >
+          <span
+            className={`inline-block h-3.5 w-3.5 transform rounded-full bg-white transition-transform ${
+              is3DMode ? 'translate-x-5' : 'translate-x-1'
+            }`}
+          />
+        </button>
+      </div>
+
+      {/* Chart Tabs (Hidden in 3D Mode) */}
+      {!is3DMode && (
+        <div className="flex border-b border-slate-800 bg-navy-950/40 p-1 gap-1">
         <button
           onClick={() => setActiveTab('temp')}
           className={`flex-1 py-1.5 text-[11px] font-medium rounded-md transition-all ${
@@ -136,6 +151,7 @@ export const FloatDrawer: React.FC<FloatDrawerProps> = ({ selectedFloat, onClose
           T-S Curve
         </button>
       </div>
+      )}
 
       {/* Chart Display Area */}
       <div className="flex-1 p-3 flex flex-col">
@@ -300,12 +316,21 @@ export const FloatDrawer: React.FC<FloatDrawerProps> = ({ selectedFloat, onClose
             )}
           </div>
         )}
+        {is3DMode && !loading && (
+          <div className="flex-1 flex flex-col items-center justify-center text-center p-4">
+            <Activity className="w-10 h-10 text-cyan-400 mb-3 animate-pulse" />
+            <h4 className="text-sm font-bold text-white mb-2">3D Hologram Active</h4>
+            <p className="text-xs text-slate-400">
+              Look at the 3D globe to explore the holographic T-S scatter plot and volumetric data. Use Blender-style controls to orbit and pan around the float.
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Footer Info */}
       <div className="p-3 bg-navy-950 border-t border-slate-800 text-[10px] text-slate-400 flex items-center justify-between font-mono">
         <span>Argo Global Ocean Observing Network</span>
-        <span className="text-cyan-400">Bay of Bengal Sector</span>
+        <span className="text-cyan-400">Full India EEZ</span>
       </div>
     </div>
   );

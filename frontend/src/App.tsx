@@ -14,6 +14,8 @@ export const App: React.FC = () => {
   const [sliceData, setSliceData] = useState<SliceData | null>(null);
   const [floats, setFloats] = useState<FloatSummary[]>([]);
   const [selectedFloat, setSelectedFloat] = useState<FloatSummary | null>(null);
+  const [selectedFloatProfile, setSelectedFloatProfile] = useState<any>(null);
+  const [profileLoading, setProfileLoading] = useState<boolean>(false);
 
   const [currentVariable, setCurrentVariable] = useState<VariableKey>('temp');
   const [currentDepth, setCurrentDepth] = useState<number>(0);
@@ -21,6 +23,7 @@ export const App: React.FC = () => {
 
   const [showCurrents, setShowCurrents] = useState<boolean>(true);
   const [showFloats, setShowFloats] = useState<boolean>(true);
+  const [showGrid, setShowGrid] = useState<boolean>(true);
   const [flyToTarget, setFlyToTarget] = useState<string | null>(null);
 
   const [loading, setLoading] = useState<boolean>(true);
@@ -59,6 +62,19 @@ export const App: React.FC = () => {
       .catch((err) => console.error('Error fetching slice:', err))
       .finally(() => setSliceLoading(false));
   }, [currentDepth, currentTimeIndex, currentVariable, metadata]);
+
+  // Fetch FloatProfile when a float is selected
+  useEffect(() => {
+    if (selectedFloat) {
+      setProfileLoading(true);
+      fetchFloatProfile(selectedFloat.id)
+        .then(data => setSelectedFloatProfile(data))
+        .catch(err => console.error('Error fetching profile:', err))
+        .finally(() => setProfileLoading(false));
+    } else {
+      setSelectedFloatProfile(null);
+    }
+  }, [selectedFloat]);
 
   if (loading) {
     return (
@@ -99,6 +115,9 @@ export const App: React.FC = () => {
         currentDepth={currentDepth}
         showCurrents={showCurrents}
         showFloats={showFloats}
+        showGrid={showGrid}
+        selectedFloat={selectedFloat}
+        selectedFloatProfile={selectedFloatProfile}
         onSelectFloat={(f) => setSelectedFloat(f)}
         flyToTarget={flyToTarget}
         onFlyToDone={() => setFlyToTarget(null)}
@@ -112,6 +131,8 @@ export const App: React.FC = () => {
         onToggleCurrents={(s) => setShowCurrents(s)}
         showFloats={showFloats}
         onToggleFloats={(s) => setShowFloats(s)}
+        showGrid={showGrid}
+        onToggleGrid={(s) => setShowGrid(s)}
       />
 
       {/* Dynamic Colormap Legend */}
@@ -134,6 +155,8 @@ export const App: React.FC = () => {
       {/* Slide-out Argo Float Profile Drawer */}
       <FloatDrawer
         selectedFloat={selectedFloat}
+        profile={selectedFloatProfile}
+        loading={profileLoading}
         onClose={() => setSelectedFloat(null)}
       />
     </main>
