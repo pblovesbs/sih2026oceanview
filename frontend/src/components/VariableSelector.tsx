@@ -32,8 +32,8 @@ export const VariableSelector: React.FC<VariableSelectorProps> = ({
   return (
     <div className="absolute top-20 left-4 z-20 flex flex-col gap-2 pointer-events-auto">
       {/* 3D Scalar Field Selector */}
-      <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-3 shadow-2xl flex flex-col gap-2 w-64">
-        <span className="text-[11px] font-mono uppercase tracking-wider text-slate-300 px-2 py-0.5">
+      <div className="bg-[#00000066] backdrop-blur-[16px] border border-white/10 rounded-2xl p-3 shadow-2xl flex flex-col gap-2 w-64 transition-opacity duration-300">
+        <span className="text-[clamp(10px,1vw,12px)] font-mono uppercase tracking-wider text-slate-300 px-2 py-0.5">
           3D Ocean Field
         </span>
         {variables.map((v) => {
@@ -57,8 +57,8 @@ export const VariableSelector: React.FC<VariableSelectorProps> = ({
       </div>
 
       {/* Vector & Float Overlays Toggles */}
-      <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-3 shadow-2xl flex flex-col gap-3 w-64 mt-2">
-        <span className="text-[11px] font-mono uppercase tracking-wider text-slate-300 px-2">
+      <div className="bg-[#00000066] backdrop-blur-[16px] border border-white/10 rounded-2xl p-3 shadow-2xl flex flex-col gap-3 w-64 mt-2 transition-opacity duration-300">
+        <span className="text-[clamp(10px,1vw,12px)] font-mono uppercase tracking-wider text-slate-300 px-2">
           Layers & Overlays
         </span>
         

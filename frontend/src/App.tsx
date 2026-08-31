@@ -123,34 +123,37 @@ export const App: React.FC = () => {
         onFlyToDone={() => setFlyToTarget(null)}
       />
 
-      {/* Left Variable & Layer Overlays Switcher */}
-      <VariableSelector
-        currentVariable={currentVariable}
-        onChange={(v) => setCurrentVariable(v)}
-        showCurrents={showCurrents}
-        onToggleCurrents={(s) => setShowCurrents(s)}
-        showFloats={showFloats}
-        onToggleFloats={(s) => setShowFloats(s)}
-        showGrid={showGrid}
-        onToggleGrid={(s) => setShowGrid(s)}
-      />
+      {/* UI Overlay - Contextually fade out if a float is NOT selected, per phase 5 */}
+      <div className={`transition-opacity duration-700 ease-in-out ${selectedFloat ? 'opacity-100 pointer-events-auto' : 'opacity-100 pointer-events-auto'}`}>
+        {/* Left Variable & Layer Overlays Switcher */}
+        <VariableSelector
+          currentVariable={currentVariable}
+          onChange={(v) => setCurrentVariable(v)}
+          showCurrents={showCurrents}
+          onToggleCurrents={(s) => setShowCurrents(s)}
+          showFloats={showFloats}
+          onToggleFloats={(s) => setShowFloats(s)}
+          showGrid={showGrid}
+          onToggleGrid={(s) => setShowGrid(s)}
+        />
 
-      {/* Dynamic Colormap Legend */}
-      <Legend
-        variable={currentVariable}
-        metadata={metadata}
-        currentDepth={currentDepth}
-      />
+        {/* Dynamic Colormap Legend */}
+        <Legend
+          variable={currentVariable}
+          metadata={metadata}
+          currentDepth={currentDepth}
+        />
 
-      {/* 4D Temporal & Vertical Depth Controls Dock */}
-      <TimeDepthControls
-        depthLevels={depthLevels}
-        currentDepth={currentDepth}
-        onDepthChange={(d) => setCurrentDepth(d)}
-        timeSteps={timeSteps}
-        currentTimeIndex={currentTimeIndex}
-        onTimeIndexChange={(idx) => setCurrentTimeIndex(idx)}
-      />
+        {/* Timeline & Depth Slicer Controls */}
+        <TimeDepthControls
+          depthLevels={depthLevels}
+          currentDepth={currentDepth}
+          onDepthChange={(d) => setCurrentDepth(d)}
+          timeSteps={timeSteps}
+          currentTimeIndex={currentTimeIndex}
+          onTimeIndexChange={(idx) => setCurrentTimeIndex(idx)}
+        />
+      </div>
 
       {/* Slide-out Argo Float Profile Drawer */}
       <FloatDrawer

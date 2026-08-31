@@ -39,23 +39,21 @@ export const FloatDrawer: React.FC<FloatDrawerProps> = ({ selectedFloat, profile
   const chartData = profile?.data || [];
 
   return (
-    <div className="absolute top-4 right-4 bottom-4 w-96 max-w-[calc(100vw-2rem)] z-30 bg-navy-900/95 backdrop-blur-2xl border border-slate-700/80 rounded-2xl shadow-2xl flex flex-col overflow-hidden pointer-events-auto transition-all animate-in slide-in-from-right">
-      {/* Drawer Header */}
-      <div className="p-4 border-b border-slate-700/60 flex items-center justify-between bg-navy-950/60">
+    <div className="absolute top-4 right-4 z-30 w-full max-w-[clamp(320px,25vw,400px)] h-[calc(100dvh-2rem)] bg-[#00000066] backdrop-blur-[16px] border border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden pointer-events-auto transition-transform duration-500 ease-out translate-x-0">
+      {/* Header */}
+      <div className="p-4 border-b border-white/10 flex justify-between items-start bg-black/20">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400">
             <Anchor className="w-4 h-4" />
           </div>
           <div>
-            <h3 className="text-sm font-bold text-white flex items-center gap-1.5 font-mono">
-              WMO {selectedFloat.platform_number}
-              <span className="text-[10px] px-1.5 py-0.2 rounded bg-amber-950 text-amber-300 border border-amber-800">
-                Cycle #{selectedFloat.cycle}
-              </span>
-            </h3>
-            <p className="text-[11px] text-slate-400 font-mono">
-              {selectedFloat.lat.toFixed(2)}°N, {selectedFloat.lon.toFixed(2)}°E
-            </p>
+          <div className="flex items-center gap-2 mb-1">
+            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+            <h2 className="text-[clamp(16px,1.5vw,18px)] font-bold text-white tracking-wide">Argo Float {selectedFloat.platform_number}</h2>
+          </div>
+          <p className="text-[clamp(11px,1vw,12px)] text-slate-400 font-mono">
+            Cycle {selectedFloat.cycle} • {new Date(selectedFloat.date).toLocaleDateString()}
+          </p>
           </div>
         </div>
         <button

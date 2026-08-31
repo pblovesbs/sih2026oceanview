@@ -51,10 +51,10 @@ export const TimeDepthControls: React.FC<TimeDepthControlsProps> = ({
   return (
     <>
       {/* Right-Side Vertical Depth Slider Panel */}
-      <div className="absolute right-4 top-24 bottom-32 z-20 flex flex-col items-center bg-navy-900/85 backdrop-blur-md border border-slate-700/60 rounded-xl p-3 shadow-2xl pointer-events-auto">
+      <div className="absolute right-4 top-24 bottom-32 z-20 flex flex-col items-center bg-[#00000066] backdrop-blur-[16px] border border-white/10 rounded-xl p-3 shadow-2xl pointer-events-auto transition-opacity duration-300">
         <div className="flex items-center gap-1.5 text-xs font-semibold text-cyan-400 mb-3">
           <Layers className="w-4 h-4" />
-          <span className="font-mono text-[11px] uppercase tracking-wider">Depth</span>
+          <span className="font-mono text-[clamp(10px,1vw,11px)] uppercase tracking-wider">Depth</span>
         </div>
 
         {/* Current depth badge */}
@@ -70,7 +70,7 @@ export const TimeDepthControls: React.FC<TimeDepthControlsProps> = ({
               <button
                 key={d}
                 onClick={() => onDepthChange(d)}
-                className={`w-full py-1 px-1.5 text-[10px] font-mono rounded transition-all ${
+                className={`w-full py-1 px-1.5 text-[clamp(10px,1vw,11px)] font-mono rounded transition-all ${
                   isSelected
                     ? 'bg-cyan-500 text-navy-950 font-bold shadow-md shadow-cyan-500/40 scale-105'
                     : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/60'
@@ -84,7 +84,7 @@ export const TimeDepthControls: React.FC<TimeDepthControlsProps> = ({
       </div>
 
       {/* Bottom Horizontal Timeline & 4D Controls Dock */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 w-[92%] max-w-4xl bg-navy-900/90 backdrop-blur-xl border border-slate-700/70 rounded-2xl p-4 shadow-2xl flex flex-col gap-3 pointer-events-auto">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 w-[92%] max-w-4xl bg-[#00000066] backdrop-blur-[16px] border border-white/10 rounded-2xl p-4 shadow-2xl flex flex-col gap-3 pointer-events-auto transition-opacity duration-300">
         <div className="flex items-center justify-between">
           {/* Timeline Playback Controls */}
           <div className="flex items-center gap-3">

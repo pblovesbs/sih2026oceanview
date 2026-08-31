@@ -71,11 +71,31 @@ export const CesiumGlobe: React.FC<CesiumGlobeProps> = ({
       navigationInstructionsInitiallyVisible: false,
       scene3DOnly: true,
       skyAtmosphere: new Cesium.SkyAtmosphere(),
+      useBrowserRecommendedResolution: false, // We will manage resolution manually
     });
 
-    // Darker ocean atmosphere styling
+    // 1.3 Hardware-Adaptive Pixel Scaling
+    const updateResolution = () => {
+      const pr = window.devicePixelRatio || 1;
+      // If framerate drops, this could be lowered dynamically. For now, match DPI.
+      viewer.resolutionScale = Math.min(pr, 2.0); // Cap at 2.0 to prevent massive overload on 3x screens
+    };
+    updateResolution();
+
+    // 1.2 Engine Auto-Resizing (ResizeObserver)
+    const resizeObserver = new ResizeObserver(() => {
+      viewer.resize();
+    });
+    resizeObserver.observe(containerRef.current);
+
+    // 3.1 Midnight Aesthetic & Translucency
     viewer.scene.globe.enableLighting = true;
     viewer.scene.globe.depthTestAgainstTerrain = false;
+    viewer.scene.globe.translucency.enabled = true;
+    viewer.scene.globe.translucency.frontFaceAlphaByDistance = new Cesium.NearFarScalar(
+      400.0, 0.2, 8000.0, 0.8
+    );
+    viewer.scene.globe.baseColor = Cesium.Color.fromCssColorString('#020617');
     
     // Smooth, Blender-like Camera Controls
     const ssc = viewer.scene.screenSpaceCameraController;
@@ -139,12 +159,18 @@ export const CesiumGlobe: React.FC<CesiumGlobeProps> = ({
     // Setup Click & Hover Handler
     const handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
     
-    // Left click on float entity
     handler.setInputAction((click: any) => {
       const pickedObject = viewer.scene.pick(click.position);
       if (Cesium.defined(pickedObject) && pickedObject.id && pickedObject.id._floatSummary) {
         const f = pickedObject.id._floatSummary;
-        onSelectFloat(f);
+        
+        // 2.1 Dynamic Framing Offset: Calculate UI width (assume ~400px panel)
+        const uiWidth = 400;
+        const screenWidth = containerRef.current?.clientWidth || window.innerWidth;
+        
+        // Calculate offset (Move target left if panel is on right)
+        // Basic approximation: adjust heading or lon
+        const isMobile = screenWidth < 768;
         
         // Cinematic Camera Swoop to target
         viewer.camera.flyTo({
@@ -156,6 +182,23 @@ export const CesiumGlobe: React.FC<CesiumGlobeProps> = ({
           },
           duration: 2.0,
           easingFunction: Cesium.EasingFunction.QUADRATIC_IN_OUT,
+          complete: () => {
+            // Decouple React state update from WebGL animation to prevent crash
+            onSelectFloat(f);
+
+            // 4.1 Context-Aware Orbiting (East-North-Up Transform)
+            const center = Cesium.Cartesian3.fromDegrees(f.lon, f.lat, 0);
+            const transform = Cesium.Transforms.eastNorthUpToFixedFrame(center);
+            
+            // Apply framing offset based on UI mode
+            const xOffset = isMobile ? 0 : 50000; // Shift target conceptually
+            viewer.camera.lookAtTransform(transform, new Cesium.Cartesian3(xOffset, -150000.0, 150000.0));
+            
+            // 4.2 Dynamic Orbital Bounds
+            const maxD = f.max_depth || 2000;
+            ssc.minimumZoomDistance = 100;
+            ssc.maximumZoomDistance = Math.max(150000, maxD * 200);
+          }
         });
       }
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
@@ -178,13 +221,25 @@ export const CesiumGlobe: React.FC<CesiumGlobeProps> = ({
     viewerRef.current = viewer;
 
     return () => {
+      resizeObserver.disconnect();
       handler.destroy();
-      if (!viewer.isDestroyed()) {
-        viewer.destroy();
-      }
+      viewer.destroy();
       viewerRef.current = null;
     };
   }, []);
+
+  // Exit camera lock when float is deselected
+  useEffect(() => {
+    const viewer = viewerRef.current;
+    if (!viewer) return;
+    
+    if (!selectedFloat) {
+      viewer.camera.lookAtTransform(Cesium.Matrix4.IDENTITY);
+      const ssc = viewer.scene.screenSpaceCameraController;
+      ssc.minimumZoomDistance = 20000;
+      ssc.maximumZoomDistance = 30000000;
+    }
+  }, [selectedFloat]);
 
   // Dynamic Responsive Coordinate Grid
   const gridProviderRef = useRef<any>(null);
@@ -214,6 +269,42 @@ export const CesiumGlobe: React.FC<CesiumGlobeProps> = ({
       }
     }
   }, [showGrid]);
+
+  // Phase 3: Holographic Excavation (Dynamic Clipping Planes)
+  useEffect(() => {
+    const viewer = viewerRef.current;
+    if (!viewer) return;
+
+    if (selectedFloat) {
+      const position = Cesium.Cartesian3.fromDegrees(selectedFloat.lon, selectedFloat.lat, 0);
+      const normal = Cesium.Cartesian3.normalize(position, new Cesium.Cartesian3());
+      // distance: how far from the origin along the normal. 
+      // A positive distance keeps the part in the normal's direction.
+      const distance = -currentDepth; // Clip downwards
+
+      if (!viewer.scene.globe.clippingPlanes) {
+        viewer.scene.globe.clippingPlanes = new Cesium.ClippingPlaneCollection({
+          planes: [new Cesium.ClippingPlane(normal, distance)],
+          edgeWidth: 5.0,
+          edgeColor: Cesium.Color.CYAN.withAlpha(0.8),
+        });
+      } else if (viewer.scene.globe.clippingPlanes.length > 0) {
+        const plane = viewer.scene.globe.clippingPlanes.get(0);
+        plane.normal = normal;
+        plane.distance = distance;
+        
+        // 3.3 Adaptive Glow Edge: scale edgeWidth based on camera distance
+        const distToCamera = Cesium.Cartesian3.distance(viewer.camera.position, position);
+        const adaptiveEdgeWidth = Math.max(1.0, Math.min(15.0, distToCamera / 50000));
+        viewer.scene.globe.clippingPlanes.edgeWidth = adaptiveEdgeWidth;
+      }
+    } else {
+      if (viewer.scene.globe.clippingPlanes) {
+        viewer.scene.globe.clippingPlanes.removeAll();
+        viewer.scene.globe.clippingPlanes = undefined as any;
+      }
+    }
+  }, [currentDepth, selectedFloat]);
 
   // Update 3D Point Cloud & Current Vectors when sliceData, variable, or depth changes
   useEffect(() => {
