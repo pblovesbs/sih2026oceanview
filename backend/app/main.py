@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+from fastapi.middleware.gzip import GZipMiddleware
 from .config import settings
 from .api import router as api_router
 
@@ -21,13 +22,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Add GZip compression for large JSON payloads
+app.add_middleware(GZipMiddleware, minimum_size=1000)
+
 # Include API Router
 app.include_router(api_router, prefix=settings.API_PREFIX)
 
 # Serve built frontend static files if present
 static_dir = settings.STATIC_DIR
+
+class CachedStaticFiles(StaticFiles):
+    def is_not_modified(self, response_headers, req_headers) -> bool:
+        response_headers["Cache-Control"] = "public, max-age=31536000, immutable"
+        return super().is_not_modified(response_headers, req_headers)
+
 if os.path.exists(static_dir):
-    app.mount("/assets", StaticFiles(directory=os.path.join(static_dir, "assets")), name="assets")
+    app.mount("/assets", CachedStaticFiles(directory=os.path.join(static_dir, "assets")), name="assets")
 
     @app.get("/{full_path:path}")
     async def serve_spa(full_path: str):

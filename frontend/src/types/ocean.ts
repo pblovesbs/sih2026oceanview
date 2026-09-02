@@ -1,4 +1,5 @@
-export type VariableKey = 'temp' | 'salinity' | 'density' | 'current_speed';
+export type VariableKey = 'temp' | 'salinity' | 'density' | 'current_speed' | 'chlorophyll';
+export type ViewMode = '3d-globe' | '2d-dashboard';
 
 export interface VariableMeta {
   name: string;
@@ -16,6 +17,8 @@ export interface OceanMetadata {
   time_steps: string[];
   variables: Record<VariableKey, VariableMeta>;
   float_count: number;
+  live_data_available?: boolean;
+  data_sources?: string[];
 }
 
 export interface OceanPoint {
@@ -25,6 +28,7 @@ export interface OceanPoint {
   temp: number;
   salinity: number;
   density: number;
+  chlorophyll?: number;
   u: number;
   v: number;
   speed: number;
@@ -36,6 +40,7 @@ export interface SliceData {
   variable: VariableKey;
   point_count: number;
   points: OceanPoint[];
+  source?: string;
 }
 
 export interface FloatSummary {
@@ -53,8 +58,11 @@ export interface FloatMeasurement {
   depth: number;
   pres: number;
   temp: number;
-  psal: number;
+  salinity: number;
+  psal?: number;
   density: number;
+  chlorophyll?: number; // BGC-Argo floats
+  oxygen?: number;      // BGC-Argo floats
 }
 
 export interface FloatProfile {
@@ -69,4 +77,12 @@ export interface FloatProfile {
   institution: string;
   data_mode: string;
   data: FloatMeasurement[];
+  source?: string;
+}
+
+export interface DateRangeResult {
+  start: string;
+  end: string;
+  step_count: number;
+  time_steps: string[];
 }

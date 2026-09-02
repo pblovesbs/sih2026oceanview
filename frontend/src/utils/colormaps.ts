@@ -1,5 +1,6 @@
 import * as Cesium from 'cesium';
 import { VariableKey } from '../types/ocean';
+import type { ColorMode, ColorScaleMode } from '../store/useOceanStore';
 
 // Colormap stops [ratio (0..1), [r, g, b]]
 // Turbo colormap: excellent for ocean temperature
@@ -41,6 +42,32 @@ const SPEED_STOPS: [number, [number, number, number]][] = [
   [1.0, [239, 68, 68]]
 ];
 
+// Chlorophyll-a colormap: Deep blue (oligotrophic) -> teal -> green -> lime (bloom)
+const CHLOROPHYLL_STOPS: [number, [number, number, number]][] = [
+  [0.0, [12, 74, 110]],
+  [0.2, [14, 165, 233]],
+  [0.4, [16, 185, 129]],
+  [0.7, [22, 163, 74]],
+  [1.0, [132, 204, 22]]
+];
+// Intuitive colormap: Blue (Cold/Low) -> White -> Red (Hot/High)
+const INTUITIVE_STOPS: [number, [number, number, number]][] = [
+  [0.0, [0, 76, 204]],     // Deep Blue
+  [0.25, [102, 178, 255]], // Light Blue
+  [0.5, [230, 230, 230]],  // White/Grey
+  [0.75, [255, 102, 102]], // Light Red
+  [1.0, [204, 0, 0]]       // Deep Red
+];
+
+// Anomaly colormap: Red for positive anomaly, Blue for negative (diverging)
+const ANOMALY_STOPS: [number, [number, number, number]][] = [
+  [0.0, [25, 25, 204]],    // Strong Negative (Blue)
+  [0.25, [120, 120, 255]], // Weak Negative
+  [0.5, [240, 240, 240]],  // Mean (White)
+  [0.75, [255, 120, 120]], // Weak Positive
+  [1.0, [204, 25, 25]]     // Strong Positive (Red)
+];
+
 function interpolateStops(t: number, stops: [number, [number, number, number]][]): [number, number, number] {
   const clampedT = Math.max(0, Math.min(1, t));
   for (let i = 0; i < stops.length - 1; i++) {
@@ -62,14 +89,35 @@ export function getColorForValue(
   value: number,
   variable: VariableKey,
   minVal: number,
-  maxVal: number
+  maxVal: number,
+  colorMode: ColorMode = 'scientific',
+  colorScaleMode: ColorScaleMode = 'linear'
 ): { r: number; g: number; b: number; hex: string; cesiumColor: Cesium.Color } {
-  const norm = (value - minVal) / (maxVal - minVal || 1);
+  let norm = 0;
+  
+  if (colorScaleMode === 'log') {
+    // Avoid log(<=0)
+    const safeMin = Math.max(0.001, minVal);
+    const safeVal = Math.max(0.001, value);
+    const safeMax = Math.max(0.002, maxVal);
+    norm = (Math.log10(safeVal) - Math.log10(safeMin)) / (Math.log10(safeMax) - Math.log10(safeMin));
+  } else {
+    norm = (value - minVal) / (maxVal - minVal || 1);
+  }
+
   let stops = TURBO_STOPS;
 
-  if (variable === 'salinity') stops = HALINE_STOPS;
-  else if (variable === 'density') stops = VIRIDIS_STOPS;
-  else if (variable === 'current_speed') stops = SPEED_STOPS;
+  if (colorMode === 'intuitive') {
+    stops = INTUITIVE_STOPS;
+  } else if (colorMode === 'anomaly') {
+    stops = ANOMALY_STOPS;
+  } else {
+    // Scientific modes
+    if (variable === 'salinity') stops = HALINE_STOPS;
+    else if (variable === 'density') stops = VIRIDIS_STOPS;
+    else if (variable === 'current_speed') stops = SPEED_STOPS;
+    else if (variable === 'chlorophyll') stops = CHLOROPHYLL_STOPS;
+  }
 
   const [r, g, b] = interpolateStops(norm, stops);
   const hex = `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
@@ -78,12 +126,24 @@ export function getColorForValue(
   return { r, g, b, hex, cesiumColor };
 }
 
-export function getLegendGradient(variable: VariableKey): string {
+export function getLegendGradient(
+  variable: VariableKey, 
+  colorMode: ColorMode = 'scientific'
+): string {
   let stops = TURBO_STOPS;
-  if (variable === 'salinity') stops = HALINE_STOPS;
-  else if (variable === 'density') stops = VIRIDIS_STOPS;
-  else if (variable === 'current_speed') stops = SPEED_STOPS;
+  
+  if (colorMode === 'intuitive') {
+    stops = INTUITIVE_STOPS;
+  } else if (colorMode === 'anomaly') {
+    stops = ANOMALY_STOPS;
+  } else {
+    if (variable === 'salinity') stops = HALINE_STOPS;
+    else if (variable === 'density') stops = VIRIDIS_STOPS;
+    else if (variable === 'current_speed') stops = SPEED_STOPS;
+    else if (variable === 'chlorophyll') stops = CHLOROPHYLL_STOPS;
+  }
 
   const cssStops = stops.map(([t, [r, g, b]]) => `rgb(${r},${g},${b}) ${Math.round(t * 100)}%`).join(', ');
   return `linear-gradient(to right, ${cssStops})`;
 }
+

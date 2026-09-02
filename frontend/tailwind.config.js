@@ -27,7 +27,8 @@ export default {
         }
       },
       fontFamily: {
-        mono: ['JetBrains Mono', 'Fira Code', 'Courier New', 'monospace'],
+        sans: ['var(--font-display)'],
+        mono: ['var(--font-mono)'],
       }
     },
   },

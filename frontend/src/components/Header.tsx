@@ -1,14 +1,17 @@
 import React from 'react';
 import { Compass, Waves, Navigation, ShieldCheck, Database } from 'lucide-react';
-import { OceanMetadata } from '../types/ocean';
+import { OceanMetadata, ViewMode } from '../types/ocean';
 
 interface HeaderProps {
   metadata: OceanMetadata | null;
   pointCount: number;
+  sliceLoading: boolean;
   onFlyTo: (target: string) => void;
+  viewMode: ViewMode;
+  onViewModeChange: (mode: ViewMode) => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ metadata, pointCount, onFlyTo }) => {
+export const Header: React.FC<HeaderProps> = ({ metadata, pointCount, sliceLoading, onFlyTo, viewMode, onViewModeChange }) => {
   return (
     <header className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between pointer-events-none">
       {/* Left Title & Status Badge */}
@@ -34,36 +37,58 @@ export const Header: React.FC<HeaderProps> = ({ metadata, pointCount, onFlyTo })
           </p>
         </div>
       </div>
+      {/* Right side controls: Camera Presets & View Mode */}
+      <div className="flex items-center gap-3">
+        {/* Camera Presets */}
+        <div className="flex items-center gap-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-2 shadow-2xl pointer-events-auto">
+          <span className="text-xs text-slate-300 font-mono px-2 flex items-center gap-1">
+            <Navigation className="w-3.5 h-3.5 text-cyan-400" /> Presets:
+          </span>
+          <button
+            onClick={() => onFlyTo('bay_of_bengal')}
+            className="px-3 py-1.5 text-xs font-medium rounded-xl text-slate-200 hover:text-white bg-white/5 hover:bg-cyan-500/80 transition-all border border-white/5 shadow-sm"
+          >
+            Bay of Bengal
+          </button>
+          <button
+            onClick={() => onFlyTo('full_india')}
+            className="px-3 py-1.5 text-xs font-medium rounded-xl text-slate-200 hover:text-white bg-white/5 hover:bg-cyan-500/80 transition-all border border-white/5 shadow-sm"
+          >
+            India Subcontinent
+          </button>
+          <button
+            onClick={() => onFlyTo('andaman')}
+            className="px-3 py-1.5 text-xs font-medium rounded-xl text-slate-200 hover:text-white bg-white/5 hover:bg-cyan-500/80 transition-all border border-white/5 shadow-sm"
+          >
+            Andaman Basin
+          </button>
+          <button
+            onClick={() => onFlyTo('chennai')}
+            className="px-3 py-1.5 text-xs font-medium rounded-xl text-slate-200 hover:text-white bg-white/5 hover:bg-cyan-500/80 transition-all border border-white/5 shadow-sm"
+          >
+            Coromandel / EICC
+          </button>
+        </div>
 
-      {/* Right Camera Presets */}
-      <div className="flex items-center gap-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-2 shadow-2xl pointer-events-auto">
-        <span className="text-xs text-slate-300 font-mono px-2 flex items-center gap-1">
-          <Navigation className="w-3.5 h-3.5 text-cyan-400" /> Presets:
-        </span>
-        <button
-          onClick={() => onFlyTo('bay_of_bengal')}
-          className="px-3 py-1.5 text-xs font-medium rounded-xl text-slate-200 hover:text-white bg-white/5 hover:bg-cyan-500/80 transition-all border border-white/5 shadow-sm"
-        >
-          Bay of Bengal
-        </button>
-        <button
-          onClick={() => onFlyTo('full_india')}
-          className="px-3 py-1.5 text-xs font-medium rounded-xl text-slate-200 hover:text-white bg-white/5 hover:bg-cyan-500/80 transition-all border border-white/5 shadow-sm"
-        >
-          India Subcontinent
-        </button>
-        <button
-          onClick={() => onFlyTo('andaman')}
-          className="px-3 py-1.5 text-xs font-medium rounded-xl text-slate-200 hover:text-white bg-white/5 hover:bg-cyan-500/80 transition-all border border-white/5 shadow-sm"
-        >
-          Andaman Basin
-        </button>
-        <button
-          onClick={() => onFlyTo('chennai')}
-          className="px-3 py-1.5 text-xs font-medium rounded-xl text-slate-200 hover:text-white bg-white/5 hover:bg-cyan-500/80 transition-all border border-white/5 shadow-sm"
-        >
-          Coromandel / EICC
-        </button>
+        {/* View Mode Toggle */}
+        <div className="flex items-center gap-1 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-1.5 shadow-2xl pointer-events-auto">
+          <button
+            onClick={() => onViewModeChange('3d-globe')}
+            className={`px-3 py-1.5 text-xs font-medium rounded-xl transition-all ${
+              viewMode === '3d-globe' ? 'bg-cyan-600 text-white shadow-md shadow-cyan-900/50' : 'text-slate-400 hover:text-white hover:bg-white/10'
+            }`}
+          >
+            3D Globe
+          </button>
+          <button
+            onClick={() => onViewModeChange('2d-dashboard')}
+            className={`px-3 py-1.5 text-xs font-medium rounded-xl transition-all flex items-center gap-1 ${
+              viewMode === '2d-dashboard' ? 'bg-indigo-600 text-white shadow-md shadow-indigo-900/50' : 'text-slate-400 hover:text-white hover:bg-white/10'
+            }`}
+          >
+            <Database className="w-3.5 h-3.5" /> Data View
+          </button>
+        </div>
       </div>
     </header>
   );

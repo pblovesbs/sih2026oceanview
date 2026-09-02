@@ -57,7 +57,7 @@ class OceanDataService:
         meta = self.field_data.get("metadata", {})
         return {
             "title": settings.PROJECT_NAME,
-            "region": "Full India EEZ (Arabian Sea & Bay of Bengal)",
+            "region": "Bay of Bengal (India EEZ Sector)",
             "center": [settings.CENTER_LON, settings.CENTER_LAT],
             "bbox": settings.BBOX,
             "depth_levels": meta.get("depth_levels", [0, 10, 25, 50, 100, 200, 500, 1000, 1500, 2000]),

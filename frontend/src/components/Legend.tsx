@@ -19,7 +19,7 @@ export const Legend: React.FC<LegendProps> = ({ variable, metadata, currentDepth
   const gradient = getLegendGradient(variable);
 
   return (
-    <div className="absolute bottom-32 left-4 z-20 bg-navy-900/85 backdrop-blur-md border border-slate-700/60 rounded-xl p-3 shadow-2xl w-64 pointer-events-auto">
+    <div className="bg-navy-900/85 backdrop-blur-md border border-slate-700/60 rounded-xl p-3 shadow-2xl w-64 pointer-events-auto">
       <div className="flex items-center justify-between text-xs mb-1.5">
         <span className="font-semibold text-slate-200">{varMeta.name}</span>
         <span className="font-mono text-cyan-400 text-[11px]">Depth: {currentDepth}m</span>

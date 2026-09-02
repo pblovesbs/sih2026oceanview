@@ -12,9 +12,9 @@ import os
 import json
 import numpy as np
 
-# Bounding box for Full India EEZ
-LON_MIN, LON_MAX = 68.0, 97.0
-LAT_MIN, LAT_MAX = 6.0, 24.0
+# Bounding box for Bay of Bengal
+LON_MIN, LON_MAX = 80.0, 97.0
+LAT_MIN, LAT_MAX = 6.0, 22.0
 GRID_RES = 0.5  # 0.5 degree spatial resolution
 
 LONS = np.arange(LON_MIN, LON_MAX + 0.1, GRID_RES)

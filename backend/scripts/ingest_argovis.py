@@ -10,12 +10,12 @@ import json
 import requests
 import numpy as np
 
-# Bounding box for Full India EEZ (Bay of Bengal + Arabian Sea)
+# Bounding box for Bay of Bengal focus
 BBOX = {
-    "min_lon": 68.0,
+    "min_lon": 80.0,
     "max_lon": 97.0,
     "min_lat": 6.0,
-    "max_lat": 24.0
+    "max_lat": 22.0
 }
 
 RAW_DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "raw")
@@ -70,7 +70,7 @@ def generate_high_fidelity_argo_profiles():
     Profiles capture both Arabian Sea (high salinity) and Bay of Bengal (low surface salinity) features.
     """
     floats_seed = [
-        # Bay of Bengal floats
+        # Bay of Bengal floats (Expanded)
         {"wmo": "2902101", "lon": 84.5, "lat": 12.8, "cycle": 42, "date": "2024-05-15T06:00:00Z"},
         {"wmo": "2902102", "lon": 88.2, "lat": 15.4, "cycle": 58, "date": "2024-05-16T12:30:00Z"},
         {"wmo": "2902103", "lon": 91.8, "lat": 18.2, "cycle": 31, "date": "2024-05-14T09:15:00Z"},
@@ -79,15 +79,18 @@ def generate_high_fidelity_argo_profiles():
         {"wmo": "2902106", "lon": 93.4, "lat": 11.2, "cycle": 72, "date": "2024-05-15T21:00:00Z"},
         {"wmo": "2902107", "lon": 89.9, "lat": 13.6, "cycle": 19, "date": "2024-05-19T04:10:00Z"},
         {"wmo": "2902108", "lon": 85.1, "lat": 19.8, "cycle": 84, "date": "2024-05-16T15:50:00Z"},
-        # Arabian Sea floats
-        {"wmo": "2902120", "lon": 70.5, "lat": 14.2, "cycle": 11, "date": "2024-05-15T08:00:00Z"},
-        {"wmo": "2902121", "lon": 72.8, "lat": 18.5, "cycle": 22, "date": "2024-05-16T10:15:00Z"},
-        {"wmo": "2902122", "lon": 69.2, "lat": 21.3, "cycle": 45, "date": "2024-05-17T14:45:00Z"},
-        {"wmo": "2902123", "lon": 74.3, "lat": 10.5, "cycle": 38, "date": "2024-05-18T09:20:00Z"},
-        {"wmo": "2902124", "lon": 68.5, "lat": 16.8, "cycle": 55, "date": "2024-05-19T11:10:00Z"},
-        {"wmo": "2902125", "lon": 71.9, "lat": 12.4, "cycle": 18, "date": "2024-05-15T22:30:00Z"},
-        {"wmo": "2902126", "lon": 76.1, "lat": 8.9, "cycle": 27, "date": "2024-05-16T05:40:00Z"},
-        {"wmo": "2902127", "lon": 73.4, "lat": 20.1, "cycle": 61, "date": "2024-05-17T19:25:00Z"},
+        {"wmo": "2902109", "lon": 83.2, "lat": 14.1, "cycle": 11, "date": "2024-05-15T08:00:00Z"},
+        {"wmo": "2902110", "lon": 87.8, "lat": 18.5, "cycle": 22, "date": "2024-05-16T10:15:00Z"},
+        {"wmo": "2902111", "lon": 92.2, "lat": 20.3, "cycle": 45, "date": "2024-05-17T14:45:00Z"},
+        {"wmo": "2902112", "lon": 84.3, "lat": 10.5, "cycle": 38, "date": "2024-05-18T09:20:00Z"},
+        {"wmo": "2902113", "lon": 88.5, "lat": 16.8, "cycle": 55, "date": "2024-05-19T11:10:00Z"},
+        {"wmo": "2902114", "lon": 81.9, "lat": 12.4, "cycle": 18, "date": "2024-05-15T22:30:00Z"},
+        {"wmo": "2902115", "lon": 86.1, "lat": 8.9, "cycle": 27, "date": "2024-05-16T05:40:00Z"},
+        {"wmo": "2902116", "lon": 90.4, "lat": 19.1, "cycle": 61, "date": "2024-05-17T19:25:00Z"},
+        {"wmo": "2902117", "lon": 82.8, "lat": 16.2, "cycle": 14, "date": "2024-05-18T13:40:00Z"},
+        {"wmo": "2902118", "lon": 85.6, "lat": 11.5, "cycle": 77, "date": "2024-05-19T08:15:00Z"},
+        {"wmo": "2902119", "lon": 89.2, "lat": 17.3, "cycle": 33, "date": "2024-05-15T14:20:00Z"},
+        {"wmo": "2902120", "lon": 94.5, "lat": 14.8, "cycle": 41, "date": "2024-05-16T07:55:00Z"},
     ]
 
     standard_depths = [
