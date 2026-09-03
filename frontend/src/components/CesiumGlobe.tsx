@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import * as Cesium from 'cesium';
 import 'cesium/Build/Cesium/Widgets/widgets.css';
-import { OceanMetadata, SliceData, FloatSummary, VariableKey } from '../types/ocean';
+import { OceanMetadata, SliceData, FloatSummary, VariableKey, FloatDriftData } from '../types/ocean';
 import { getColorForValue } from '../utils/colormaps';
 import { generateRasterFromPoints } from '../utils/raster';
 import { useOceanStore } from '../store/useOceanStore';
-import { fetchContours, fetchDeltas } from '../services/api';
+import { fetchContours, fetchDeltas, fetchSimulatedDrift } from '../services/api';
 
 
 interface CesiumGlobeProps {
@@ -79,8 +79,19 @@ export const CesiumGlobe: React.FC<CesiumGlobeProps> = ({
 
   const [contoursData, setContoursData] = useState<any[]>([]);
   const [deltasData, setDeltasData] = useState<any>(null);
+  const [simulatedDrifts, setSimulatedDrifts] = useState<Record<string, FloatDriftData>>({});
   const contoursCacheRef = useRef<Record<string, any[]>>({});
   const deltasCacheRef = useRef<Record<string, any>>({});
+
+  useEffect(() => {
+    fetchSimulatedDrift()
+      .then((res) => {
+        if (res && res.drifts) {
+          setSimulatedDrifts(res.drifts);
+        }
+      })
+      .catch((err) => console.warn('Simulated drift fetch error:', err));
+  }, []);
 
   // ─── Cache Purge ───────────────────────────────────────────────────────────
   useEffect(() => {
@@ -248,31 +259,7 @@ export const CesiumGlobe: React.FC<CesiumGlobeProps> = ({
       const pickedObject = viewer.scene.pick(click.position);
       if (Cesium.defined(pickedObject) && pickedObject.id && (pickedObject.id as any)._floatSummary) {
         const f = (pickedObject.id as any)._floatSummary as FloatSummary;
-        const screenWidth = containerRef.current?.clientWidth || window.innerWidth;
-        const isMobile = screenWidth < 768;
-
-        const offsetLon = isMobile ? f.lon : f.lon - 0.25;
-        viewer.camera.flyTo({
-          destination: Cesium.Cartesian3.fromDegrees(offsetLon, f.lat - 0.7, 150000),
-          orientation: {
-            heading: Cesium.Math.toRadians(12.0),
-            pitch: Cesium.Math.toRadians(-35.0),
-            roll: 0.0,
-          },
-          duration: 2.0,
-          easingFunction: Cesium.EasingFunction.QUADRATIC_IN_OUT,
-          complete: () => {
-            onSelectFloat(f);
-            const center = Cesium.Cartesian3.fromDegrees(f.lon, f.lat, 0);
-            const transform = Cesium.Transforms.eastNorthUpToFixedFrame(center);
-            const xOffset = isMobile ? 0 : 50000;
-            viewer.camera.lookAtTransform(transform, new Cesium.Cartesian3(xOffset, -150000.0, 150000.0));
-            const maxD = f.max_depth || 2000;
-            ssc.minimumZoomDistance = 100;
-            ssc.maximumZoomDistance = Math.max(150000, maxD * 200);
-            viewer.scene.requestRender();
-          },
-        });
+        onSelectFloat(f);
       }
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
@@ -400,20 +387,46 @@ export const CesiumGlobe: React.FC<CesiumGlobeProps> = ({
   }, [storeHoveredDepth, selectedFloat, verticalExaggeration]);
 
 
-  // ─── Camera deselect ─────────────────────────────────────────────────────────
+  // ─── Camera select / deselect synchronization ─────────────────────────────
   useEffect(() => {
     const viewer = viewerRef.current;
-    if (!viewer) return;
+    if (!viewer || viewer.isDestroyed()) return;
+    const ssc = viewer.scene.screenSpaceCameraController;
+
     if (!selectedFloat) {
       viewer.camera.lookAtTransform(Cesium.Matrix4.IDENTITY);
-      const ssc = viewer.scene.screenSpaceCameraController;
       ssc.minimumZoomDistance = 20000;
       ssc.maximumZoomDistance = 30000000;
-      // Step resolution back up on Focus Mode exit
       viewer.resolutionScale = 1.0;
-      viewer.scene.requestRender(); // P0 fix — was missing
+      viewer.scene.requestRender();
+    } else {
+      const screenWidth = containerRef.current?.clientWidth || window.innerWidth;
+      const isMobile = screenWidth < 768;
+      const offsetLon = isMobile ? selectedFloat.lon : selectedFloat.lon - 0.25;
+
+      viewer.camera.flyTo({
+        destination: Cesium.Cartesian3.fromDegrees(offsetLon, selectedFloat.lat - 0.7, 150000),
+        orientation: {
+          heading: Cesium.Math.toRadians(12.0),
+          pitch: Cesium.Math.toRadians(-35.0),
+          roll: 0.0,
+        },
+        duration: 1.5,
+        easingFunction: Cesium.EasingFunction.QUADRATIC_IN_OUT,
+        complete: () => {
+          if (!viewer || viewer.isDestroyed()) return;
+          const center = Cesium.Cartesian3.fromDegrees(selectedFloat.lon, selectedFloat.lat, 0);
+          const transform = Cesium.Transforms.eastNorthUpToFixedFrame(center);
+          const xOffset = isMobile ? 0 : 50000;
+          viewer.camera.lookAtTransform(transform, new Cesium.Cartesian3(xOffset, -150000.0, 150000.0));
+          const maxD = selectedFloat.max_depth || 2000;
+          ssc.minimumZoomDistance = 100;
+          ssc.maximumZoomDistance = Math.max(150000, maxD * 200);
+          viewer.scene.requestRender();
+        },
+      });
     }
-  }, [selectedFloat]);
+  }, [selectedFloat?.id]);
 
   // ─── Coordinate Grid (toggleable) ────────────────────────────────────────────
   // gridLayerRef tracks the actual ImageryLayer for O(1) instantaneous removal
@@ -1006,10 +1019,41 @@ export const CesiumGlobe: React.FC<CesiumGlobeProps> = ({
           color: Cesium.Color.fromCssColorString(hexColor).withAlpha(isSelected ? 0.7 : 0.35),
         }),
       });
+
+      // ── Lagrangian Simulated Drift Path at 1000m Parking Depth ─────────────
+      const drift = simulatedDrifts[f.id];
+      if (drift && drift.drift_path && drift.drift_path.length > 1) {
+        const parkingDepth = drift.parking_depth || 1000;
+        const driftCartesians = drift.drift_path.map((pt) =>
+          Cesium.Cartesian3.fromDegrees(pt.lon, pt.lat, -parkingDepth * zScale)
+        );
+
+        floatLines.add({
+          positions: driftCartesians,
+          width: isSelected ? 3.5 : 2.0,
+          material: Cesium.Material.fromType('PolylineDash', {
+            color: Cesium.Color.fromCssColorString(hexColor).withAlpha(isSelected ? 0.95 : 0.65),
+            dashLength: 16.0,
+          }),
+        });
+
+        // Drift waypoints
+        driftCartesians.forEach((pos, ptIdx) => {
+          if (ptIdx > 0) {
+            floatPoints.add({
+              position: pos,
+              color: Cesium.Color.fromCssColorString(hexColor).withAlpha(isSelected ? 0.9 : 0.5),
+              pixelSize: isSelected ? 6 : 4,
+              outlineColor: Cesium.Color.BLACK,
+              outlineWidth: 1,
+            });
+          }
+        });
+      }
     });
 
     viewer.scene.requestRender();
-  }, [floats, showFloats, selectedFloat, contextRevision]);
+  }, [floats, showFloats, selectedFloat, contextRevision, verticalExaggeration, simulatedDrifts]);
 
 
   // ─── Fetch Contours & Deltas ─────────────────────────────────────────────

@@ -26,7 +26,9 @@ import {
   CircleDot,
   ScrollText,
   ChevronDown,
-  Check
+  Check,
+  FileText,
+  Scale
 } from 'lucide-react';
 import {
   LineChart,
@@ -129,6 +131,8 @@ export const InspectionPanel: React.FC<InspectionPanelProps> = ({
   const [isFirstView, setIsFirstView] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
+  const minDragRef = useRef<{ startX: number; startY: number; initX: number; initY: number; hasMoved: boolean } | null>(null);
+  const [isMinDragging, setIsMinDragging] = useState(false);
 
   // Layout states
   const [pos, setPos] = useState({ x: 50, y: 100 });
@@ -226,12 +230,14 @@ export const InspectionPanel: React.FC<InspectionPanelProps> = ({
       const sal = d.salinity ?? d.psal ?? 34.0;
       const chl = d.chlorophyll ?? computeDCMChlorophyll(d.depth, selectedFloat?.lat ?? 15.0);
       const sigma = computeSigmaTheta(d.temp, sal);
+      const sigmaVal = parseFloat(sigma.toFixed(2));
       const wm = classifyWaterMass(d.temp, sal, d.depth);
       return {
         ...d,
+        density: sigmaVal,
         salinity: sal,
         chlorophyll: parseFloat(chl.toFixed(3)),
-        sigmaTheta: parseFloat(sigma.toFixed(2)),
+        sigmaTheta: sigmaVal,
         waterMass: wm.name,
         waterMassCode: wm.code,
         waterMassColor: wm.color,
@@ -482,16 +488,68 @@ export const InspectionPanel: React.FC<InspectionPanelProps> = ({
     }
   };
 
+  const onMinPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    try {
+      (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+    } catch (_) {}
+    minDragRef.current = {
+      startX: e.clientX,
+      startY: e.clientY,
+      initX: pos.x,
+      initY: pos.y,
+      hasMoved: false,
+    };
+  };
+
+  const onMinPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!minDragRef.current) return;
+    const dx = e.clientX - minDragRef.current.startX;
+    const dy = e.clientY - minDragRef.current.startY;
+
+    if (!minDragRef.current.hasMoved && Math.hypot(dx, dy) > 4) {
+      minDragRef.current.hasMoved = true;
+      setIsMinDragging(true);
+    }
+
+    if (minDragRef.current.hasMoved) {
+      const clampedX = Math.max(8, Math.min(window.innerWidth - 56, minDragRef.current.initX + dx));
+      const clampedY = Math.max(8, Math.min(window.innerHeight - 56, minDragRef.current.initY + dy));
+      setPos({ x: clampedX, y: clampedY });
+    }
+  };
+
+  const onMinPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!minDragRef.current) return;
+    try {
+      (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+    } catch (_) {}
+
+    if (!minDragRef.current.hasMoved) {
+      setIsMinimized(false);
+    }
+
+    minDragRef.current = null;
+    setIsMinDragging(false);
+  };
+
   if (isMinimized) {
     return (
-      <button
-        onClick={() => setIsMinimized(false)}
-        className="fixed z-50 w-12 h-12 bg-slate-900/80 backdrop-blur-xl border border-cyan-500/50 rounded-full shadow-2xl flex items-center justify-center hover:bg-slate-800 transition-colors pointer-events-auto"
-        style={{ left: pos.x, top: pos.y }}
-        title="Restore Inspection Panel"
+      <div
+        onPointerDown={onMinPointerDown}
+        onPointerMove={onMinPointerMove}
+        onPointerUp={onMinPointerUp}
+        onPointerCancel={onMinPointerUp}
+        className={`fixed z-50 w-12 h-12 bg-slate-900/85 backdrop-blur-xl border border-cyan-500/50 rounded-full shadow-2xl flex items-center justify-center pointer-events-auto cursor-grab active:cursor-grabbing select-none transition-transform ${
+          isMinDragging
+            ? 'scale-110 ring-2 ring-cyan-400 shadow-cyan-500/40 bg-slate-800'
+            : 'hover:bg-slate-800 hover:scale-105'
+        }`}
+        style={{ left: pos.x, top: pos.y, touchAction: 'none' }}
+        title="Click to restore or drag to reposition Float Inspection Panel"
       >
-        <Activity className="w-5 h-5 text-cyan-400" />
-      </button>
+        <Anchor className="w-5 h-5 text-cyan-400 pointer-events-none" />
+      </div>
     );
   }
 
@@ -577,10 +635,10 @@ export const InspectionPanel: React.FC<InspectionPanelProps> = ({
           {[
             { id: 'temp',        icon: Thermometer, label: 'T(z)' },
             { id: 'salinity',    icon: Droplets,    label: 'S(z)' },
-            { id: 'density',     icon: Layers,      label: 'ρ(z)' },
+            { id: 'density',     icon: Scale,       label: 'ρ(z)' },
             { id: 'chlorophyll', icon: Leaf,        label: 'Chl(z)' },
             { id: 'ts',          icon: Activity,    label: 'T-S'  },
-            { id: 'summary',     icon: Compass,     label: 'Summary' },
+            { id: 'summary',     icon: FileText,    label: 'Summary' },
           ].map(tab => (
             <button
               key={tab.id}
@@ -885,6 +943,18 @@ export const InspectionPanel: React.FC<InspectionPanelProps> = ({
                       T-S signature consistent with <span className="text-white font-semibold">Bay of Bengal Fresh Water (BBFW)</span> at surface,
                       transitioning to <span className="text-white font-semibold">Indian Ocean Central Water (IOCW)</span> below thermocline.
                     </p>
+                  </div>
+
+                  <div className="bg-cyan-950/30 border border-cyan-900/50 p-3 rounded-xl shrink-0 flex items-center justify-between">
+                    <div>
+                      <h4 className="text-xs font-semibold text-cyan-400 mb-0.5">Simulated Drift (modeled from current field)</h4>
+                      <p className="text-[10px] text-slate-300">
+                        Lagrangian advection integrated forward across 5 daily timesteps at 1000m parking depth.
+                      </p>
+                    </div>
+                    <span className="text-[9px] font-mono px-2 py-1 rounded bg-cyan-900/50 text-cyan-300 border border-cyan-700/60 whitespace-nowrap ml-3">
+                      1000m Depth
+                    </span>
                   </div>
                 </div>
               )}

@@ -17,9 +17,9 @@ import { VariableSelector } from './components/VariableSelector';
 import { Legend } from './components/Legend';
 import { TimeDepthControls } from './components/TimeDepthControls';
 import { Toast } from './components/Toast';
-import { SliceData, VariableKey } from './types/ocean';
+import { SliceData, VariableKey, FloatSummary } from './types/ocean';
 import { fetchMetadata, fetchFieldSlice, fetchFloats, fetchFloatProfile } from './services/api';
-import { Loader2, Layers, Compass, ScrollText } from 'lucide-react';
+import { Loader2, SlidersHorizontal, MapPin, Palette } from 'lucide-react';
 import { FloatSelector } from './components/FloatSelector';
 import { InspectionPanel } from './components/InspectionPanel';
 import { TwoDViewDashboard } from './components/TwoDViewDashboard';
@@ -63,6 +63,11 @@ export const App: React.FC = () => {
   const setSelectedFloatProfile = useOceanStore((s) => s.setSelectedFloatProfile);
   const setIsProfileLoading    = useOceanStore((s) => s.setIsProfileLoading);
   const markFloatVisited       = useOceanStore((s) => s.markFloatVisited);
+
+  const handleSelectFloat = useCallback((f: FloatSummary) => {
+    setSelectedFloat(f);
+    markFloatVisited(f.id);
+  }, [setSelectedFloat, markFloatVisited]);
 
   // ── Dynamic time steps (can be updated by date range picker) ───────────────
   const [dynamicTimeSteps, setDynamicTimeSteps] = useState<string[]>([]);
@@ -303,7 +308,7 @@ export const App: React.FC = () => {
             <DraggablePanel
               id="display-controls"
               title="Display Controls"
-              icon={Layers}
+              icon={SlidersHorizontal}
               initialPosition={{ x: 16, y: 80 }}
               defaultMinimized={false}
               help={{
@@ -318,7 +323,7 @@ export const App: React.FC = () => {
             <DraggablePanel
               id="float-navigator"
               title="Argo Float Navigator"
-              icon={Compass}
+              icon={MapPin}
               initialPosition={{ x: Math.max(16, window.innerWidth - 340), y: 80 }}
               defaultMinimized={false}
               help={{
@@ -329,10 +334,7 @@ export const App: React.FC = () => {
               <FloatSelector
                 floats={allFloats}
                 selectedFloat={selectedFloat}
-                onSelect={(f) => {
-                  setSelectedFloat(f);
-                  markFloatVisited(f.id);
-                }}
+                onSelect={handleSelectFloat}
               />
             </DraggablePanel>
 
@@ -340,9 +342,13 @@ export const App: React.FC = () => {
             <DraggablePanel
               id="legend"
               title="Legend"
-              icon={ScrollText}
+              icon={Palette}
               initialPosition={{ x: Math.max(16, window.innerWidth - 340), y: Math.max(80, window.innerHeight - 280) }}
               defaultMinimized={false}
+              help={{
+                description: 'Displays the colormap scale and active variable data range.',
+                significance: 'Provides the visual key for interpreting the currently mapped 3D scalar field.',
+              }}
             >
               <Legend
                 variable={selectedVariable}

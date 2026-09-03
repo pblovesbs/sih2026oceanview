@@ -1,4 +1,4 @@
-import { OceanMetadata, SliceData, FloatSummary, FloatProfile, VariableKey, DateRangeResult } from '../types/ocean';
+import { OceanMetadata, SliceData, FloatSummary, FloatProfile, VariableKey, DateRangeResult, SimulatedDriftResponse } from '../types/ocean';
 import { ContourResponse, DeltaResponse } from '../types/api';
 
 const API_BASE = '/api';
@@ -65,6 +65,12 @@ export async function fetchFloatProfile(floatId: string): Promise<FloatProfile> 
     });
   }
   return profile;
+}
+
+export async function fetchSimulatedDrift(): Promise<SimulatedDriftResponse> {
+  const res = await fetch(`${API_BASE}/floats/simulated_drift`);
+  if (!res.ok) throw new Error(`Failed to fetch simulated drift: ${res.statusText}`);
+  return res.json();
 }
 
 export async function fetchDateRange(start: string, end: string): Promise<DateRangeResult> {

@@ -17,6 +17,7 @@
  */
 
 import { create } from 'zustand';
+import { useShallow } from 'zustand/react/shallow';
 import {
   OceanMetadata,
   SliceData,
@@ -339,54 +340,54 @@ export const useOceanStore = create<OceanStoreState>((set) => ({
 
 /** Hook: read + write the currently selected float and its profile */
 export const useSelectedFloat = () =>
-  useOceanStore((s) => ({
+  useOceanStore(useShallow((s) => ({
     selectedFloat: s.selectedFloat,
     selectedFloatProfile: s.selectedFloatProfile,
     isProfileLoading: s.isProfileLoading,
     visitedFloatIds: s.visitedFloatIds,
     setSelectedFloat: s.setSelectedFloat,
     markFloatVisited: s.markFloatVisited,
-  }));
+  })));
 
 /** Hook: read + write depth / time / exaggeration */
 export const useSpatioTemporal = () =>
-  useOceanStore((s) => ({
+  useOceanStore(useShallow((s) => ({
     currentDepth: s.currentDepth,
     currentTimestep: s.currentTimestep,
     verticalExaggeration: s.verticalExaggeration,
     setCurrentDepth: s.setCurrentDepth,
     setCurrentTimestep: s.setCurrentTimestep,
     setVerticalExaggeration: s.setVerticalExaggeration,
-  }));
+  })));
 
 /** Hook: read + write the active variable and color scale mode */
 export const useVariable = () =>
-  useOceanStore((s) => ({
+  useOceanStore(useShallow((s) => ({
     selectedVariable: s.selectedVariable,
     colorScaleMode: s.colorScaleMode,
     setSelectedVariable: s.setSelectedVariable,
     setColorScaleMode: s.setColorScaleMode,
-  }));
+  })));
 
 /** Hook: read + write the transient hover depth cursor */
 export const useHoveredDepth = () =>
-  useOceanStore((s) => ({
+  useOceanStore(useShallow((s) => ({
     hoveredDepth: s.hoveredDepth,
     setHoveredDepth: s.setHoveredDepth,
-  }));
+  })));
 
 /** Hook: read + write view mode and inspection tab */
 export const useViewMode = () =>
-  useOceanStore((s) => ({
+  useOceanStore(useShallow((s) => ({
     viewMode: s.viewMode,
     activeInspectionTab: s.activeInspectionTab,
     setViewMode: s.setViewMode,
     setActiveInspectionTab: s.setActiveInspectionTab,
-  }));
+  })));
 
 /** Hook: read + write the new UI modes */
 export const useUIModes = () =>
-  useOceanStore((s) => ({
+  useOceanStore(useShallow((s) => ({
     hologramMode: s.hologramMode,
     colorMode: s.colorMode,
     explanationMode: s.explanationMode,
@@ -395,34 +396,34 @@ export const useUIModes = () =>
     setColorMode: s.setColorMode,
     setExplanationMode: s.setExplanationMode,
     setIsAutoCentering: s.setIsAutoCentering,
-  }));
+  })));
 
 /** Hook: read + write layer visibility toggles */
 export const useLayerToggles = () =>
-  useOceanStore((s) => ({
+  useOceanStore(useShallow((s) => ({
     showCurrents: s.showCurrents,
     showFloats: s.showFloats,
     showGrid: s.showGrid,
     showContours: s.showContours,
     showDeltas: s.showDeltas,
     toggleLayer: s.toggleLayer,
-  }));
+  })));
 
 /** Hook: read slice data and loading state for Cesium/2D Dashboard */
 export const useSliceData = () =>
-  useOceanStore((s) => ({
+  useOceanStore(useShallow((s) => ({
     sliceDataA: s.sliceDataA,
     sliceDataB: s.sliceDataB,
     isSliceLoading: s.isSliceLoading,
     setSliceDataA: s.setSliceDataA,
     setSliceDataB: s.setSliceDataB,
     setIsSliceLoading: s.setIsSliceLoading,
-  }));
+  })));
 
 /** Hook: fleet data for FleetSpatialHologram */
 export const useFleetData = () =>
-  useOceanStore((s) => ({
+  useOceanStore(useShallow((s) => ({
     allFloats: s.allFloats,
     allProfiles: s.allProfiles,
     metadata: s.metadata,
-  }));
+  })));

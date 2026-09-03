@@ -1,6 +1,7 @@
 import React from 'react';
 import { VariableKey, OceanMetadata } from '../types/ocean';
 import { getLegendGradient } from '../utils/colormaps';
+import { useOceanStore } from '../store/useOceanStore';
 
 interface LegendProps {
   variable: VariableKey;
@@ -8,7 +9,8 @@ interface LegendProps {
   currentDepth: number;
 }
 
-export const Legend: React.FC<LegendProps> = ({ variable, metadata, currentDepth }) => {
+export const Legend: React.FC<LegendProps> = React.memo(({ variable, metadata, currentDepth }) => {
+  const colorMode = useOceanStore((s) => s.colorMode);
   const varMeta = metadata?.variables[variable] || {
     name: variable,
     unit: '',
@@ -16,7 +18,7 @@ export const Legend: React.FC<LegendProps> = ({ variable, metadata, currentDepth
     max: 100,
   };
 
-  const gradient = getLegendGradient(variable);
+  const gradient = getLegendGradient(variable, colorMode);
 
   return (
     <div className="bg-navy-900/85 backdrop-blur-md border border-slate-700/60 rounded-xl p-3 shadow-2xl w-64 pointer-events-auto">
@@ -39,4 +41,4 @@ export const Legend: React.FC<LegendProps> = ({ variable, metadata, currentDepth
       </div>
     </div>
   );
-};
+});

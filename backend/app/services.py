@@ -107,5 +107,74 @@ class OceanDataService:
     def get_float_profile(self, profile_id: str) -> Optional[Dict[str, Any]]:
         return self.raw_profiles.get(profile_id)
 
+    def get_simulated_drift(self) -> Dict[str, Any]:
+        """Compute pure Lagrangian advection simulated drift paths for all floats at 1000m parking depth."""
+        if hasattr(self, "_cached_drift") and self._cached_drift:
+            return self._cached_drift
+
+        import math
+        R_EARTH = 6371000.0  # Earth radius in meters
+        slices = self.field_data.get("slices", {})
+        time_steps = list(slices.keys())
+        parking_depth = "1000"
+
+        if not time_steps or not self.floats_summary:
+            return {"floats": {}}
+
+        results = {}
+        for fl in self.floats_summary:
+            fid = fl["id"]
+            cur_lon = float(fl["lon"])
+            cur_lat = float(fl["lat"])
+
+            path = [{
+                "time": time_steps[0],
+                "lon": cur_lon,
+                "lat": cur_lat,
+                "depth": 1000
+            }]
+
+            for i in range(len(time_steps) - 1):
+                t = time_steps[i]
+                pts = slices.get(t, {}).get(parking_depth, [])
+                if not pts:
+                    depth_keys = list(slices.get(t, {}).keys())
+                    if depth_keys:
+                        pts = slices[t][depth_keys[0]]
+                    else:
+                        continue
+
+                best_pt = min(pts, key=lambda p: (p["lon"] - cur_lon)**2 + (p["lat"] - cur_lat)**2)
+                u = float(best_pt.get("u", 0.0))
+                v = float(best_pt.get("v", 0.0))
+                dt = 86400.0  # 1 day in seconds
+
+                dlat = (v * dt) / R_EARTH * (180.0 / math.pi)
+                cos_lat = math.cos(math.radians(cur_lat))
+                dlon = (u * dt) / (R_EARTH * (cos_lat if abs(cos_lat) > 1e-4 else 1.0)) * (180.0 / math.pi)
+
+                cur_lat = round(cur_lat + dlat, 4)
+                cur_lon = round(cur_lon + dlon, 4)
+                path.append({
+                    "time": time_steps[i + 1],
+                    "lon": cur_lon,
+                    "lat": cur_lat,
+                    "depth": 1000
+                })
+
+            results[fid] = {
+                "platform_number": fl["platform_number"],
+                "parking_depth": 1000,
+                "drift_path": path
+            }
+
+        self._cached_drift = {
+            "source": "Lagrangian advection (modeled from velocity field at 1000m parking depth)",
+            "timesteps": time_steps,
+            "drifts": results
+        }
+        return self._cached_drift
+
 
 ocean_service = OceanDataService()
+

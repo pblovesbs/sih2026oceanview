@@ -15,7 +15,8 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import {
   Play, Pause, SkipBack, SkipForward, Clock, Zap, Timer,
-  RefreshCw, Radio, CalendarRange, ChevronDown, Expand, AlignCenter
+  RefreshCw, Radio, CalendarRange, ChevronDown, Expand, AlignCenter,
+  ArrowDownUp, CalendarClock
 } from 'lucide-react';
 import { DraggablePanel } from './DraggablePanel';
 import { useOceanStore } from '../store/useOceanStore';
@@ -332,6 +333,7 @@ export const TimeDepthControls: React.FC<TimeDepthControlsProps> = ({
       <DraggablePanel
         id="depth-slider"
         title="Depth Slicer"
+        icon={ArrowDownUp}
         initialPosition={{ x: window.innerWidth - 100, y: 90 }}
         help={{
           description: 'Control the ocean depth cross-section being displayed.',
@@ -400,7 +402,12 @@ export const TimeDepthControls: React.FC<TimeDepthControlsProps> = ({
       <DraggablePanel
         id="timeline-dock"
         title="4D Timeline"
+        icon={CalendarClock}
         initialPosition={{ x: Math.max(16, window.innerWidth / 2 - 350), y: window.innerHeight - 170 }}
+        help={{
+          description: 'Navigate and animate the 4D ocean state across available timesteps.',
+          significance: 'Enables observation of dynamic ocean processes, eddies, and currents over time.',
+        }}
       >
         <div className="w-[680px] flex flex-col gap-3">
 

@@ -4,7 +4,7 @@ import {
   LineChart, Line, AreaChart, Area, ReferenceLine
 } from 'recharts';
 import { SliceData, FloatSummary, VariableKey } from '../types/ocean';
-import { Thermometer, Droplets, Database, Compass, Activity, Map } from 'lucide-react';
+import { Thermometer, Droplets, Database, Activity, Map, MoveVertical } from 'lucide-react';
 
 interface TwoDViewDashboardProps {
   sliceData: SliceData | null;
@@ -93,7 +93,7 @@ export const TwoDViewDashboard: React.FC<TwoDViewDashboardProps> = ({ sliceData,
           {/* Meridional Transect */}
           <div className="bg-slate-900/50 border border-white/10 rounded-2xl p-4 flex-1 min-h-[300px] flex flex-col">
             <div className="flex items-center gap-2 mb-4">
-              <Compass className="w-5 h-5 text-emerald-500" />
+              <MoveVertical className="w-5 h-5 text-emerald-500" />
               <h3 className="text-sm font-semibold text-white">Meridional Transect Cross-Section (Depth vs Latitude)</h3>
               <span className="ml-auto text-xs text-slate-500 font-mono">88°E Longitude</span>
             </div>

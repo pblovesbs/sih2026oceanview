@@ -23,12 +23,16 @@ import {
   Layers,
   Compass,
   Sliders,
+  Gauge,
+  Grid,
+  Spline,
+  GitCompare,
 } from 'lucide-react';
 import { VariableKey } from '../types/ocean';
 import { useOceanStore } from '../store/useOceanStore';
 import { HelpTooltip } from './HelpTooltip';
 
-export const VariableSelector: React.FC = () => {
+export const VariableSelector: React.FC = React.memo(() => {
   // Global store subscriptions
   const selectedVariable = useOceanStore((s) => s.selectedVariable);
   const setSelectedVariable = useOceanStore((s) => s.setSelectedVariable);
@@ -59,11 +63,11 @@ export const VariableSelector: React.FC = () => {
   const [openOverlays, setOpenOverlays] = useState(true);
   const [openModes, setOpenModes] = useState(true);
 
-  const variables: { key: VariableKey; label: string; unit: string; icon: React.ElementType; color: string }[] = [
-    { key: 'temp', label: 'Temperature', unit: '°C', icon: ThermometerSun, color: 'text-amber-400' },
-    { key: 'salinity', label: 'Salinity', unit: 'PSU', icon: Droplets, color: 'text-blue-400' },
-    { key: 'density', label: 'Density', unit: 'kg/m³', icon: Scale, color: 'text-emerald-400' },
-    { key: 'chlorophyll', label: 'Chlorophyll-a', unit: 'mg/m³', icon: Leaf, color: 'text-green-400' },
+  const variables: { key: VariableKey; label: string; unit: string; icon: React.ElementType; color: string; desc: string; sig: string }[] = [
+    { key: 'temp', label: 'Temperature', unit: '°C', icon: ThermometerSun, color: 'text-amber-400', desc: 'Sea water potential temperature', sig: 'Fundamental property dictating stratification and heat transport.' },
+    { key: 'salinity', label: 'Salinity', unit: 'PSU', icon: Droplets, color: 'text-blue-400', desc: 'Practical Salinity Units', sig: 'Drives thermohaline circulation alongside temperature.' },
+    { key: 'density', label: 'Density', unit: 'kg/m³', icon: Scale, color: 'text-emerald-400', desc: 'Potential Density Anomaly (σθ)', sig: 'Determines buoyancy and water mass stability/mixing.' },
+    { key: 'chlorophyll', label: 'Chlorophyll-a', unit: 'mg/m³', icon: Leaf, color: 'text-green-400', desc: 'Photosynthetic pigment concentration', sig: 'Primary indicator of phytoplankton biomass and ocean productivity.' },
   ];
 
   const overlayItems = [
@@ -116,7 +120,7 @@ export const VariableSelector: React.FC = () => {
       label: 'Coordinate Grid',
       description: 'Geospatial lat/lon & depth coordinates',
       significance: 'Provides spatial reference for latitude, longitude, and bathymetric depth across the basin.',
-      icon: Crosshair,
+      icon: Grid,
       color: 'bg-teal-500',
       activeColor: 'text-teal-400',
       value: showGrid,
@@ -138,7 +142,7 @@ export const VariableSelector: React.FC = () => {
       label: 'Isoline Contours',
       description: 'Dynamic data-driven marching squares isolines',
       significance: 'Outlines areas of equal value (isotherms, isohalines) to identify frontal boundaries and gradients.',
-      icon: Waves,
+      icon: Spline,
       color: 'bg-lime-500',
       activeColor: 'text-lime-400',
       value: showContours,
@@ -149,7 +153,7 @@ export const VariableSelector: React.FC = () => {
       label: 'Delta Anomaly Raster',
       description: 'Raster displaying anomaly changes between intervals',
       significance: 'Highlights regions undergoing the most rapid environmental changes compared to a baseline or previous timestep.',
-      icon: Layers,
+      icon: GitCompare,
       color: 'bg-rose-500',
       activeColor: 'text-rose-400',
       value: showDeltas,
@@ -168,7 +172,7 @@ export const VariableSelector: React.FC = () => {
           className="flex items-center justify-between px-3 py-2 bg-slate-800/40 hover:bg-slate-800/70 transition-colors text-left"
         >
           <div className="flex items-center gap-2">
-            <Layers className="w-3.5 h-3.5 text-cyan-400" />
+            <Gauge className="w-3.5 h-3.5 text-cyan-400" />
             <span className="text-sm font-semibold text-slate-200">
               Scalar Fields
             </span>
@@ -202,7 +206,12 @@ export const VariableSelector: React.FC = () => {
                 >
                   <div className="flex items-center gap-2.5">
                     <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-white' : v.color}`} />
-                    <span>{v.label}</span>
+                    <div className="flex items-center gap-1.5">
+                      <span>{v.label}</span>
+                      <div onClick={e => e.stopPropagation()}>
+                        <HelpTooltip title={v.label} description={v.desc} significance={v.sig} iconOnly={true} />
+                      </div>
+                    </div>
                   </div>
                   <span className={`text-[10px] font-mono ${isActive ? 'text-cyan-100' : 'text-slate-500'}`}>
                     {v.unit}
@@ -221,7 +230,7 @@ export const VariableSelector: React.FC = () => {
           className="flex items-center justify-between px-3 py-2 bg-slate-800/40 hover:bg-slate-800/70 transition-colors text-left"
         >
           <div className="flex items-center gap-2">
-            <Compass className="w-3.5 h-3.5 text-indigo-400" />
+            <Layers className="w-3.5 h-3.5 text-indigo-400" />
             <span className="text-sm font-semibold text-slate-200">
               Overlays &amp; Context
             </span>
@@ -245,24 +254,25 @@ export const VariableSelector: React.FC = () => {
                 key={id}
                 className="flex items-center justify-between px-2.5 py-2 rounded-lg hover:bg-white/5 transition-all text-left w-full"
               >
-                <HelpTooltip 
-                  title={label} 
-                  description={description} 
-                  significance={significance}
-                  className="flex-1 min-w-0"
-                >
-                  <div className="flex items-start gap-2.5 min-w-0 pr-2 cursor-pointer w-full group" onClick={onClick}>
-                    <Icon className={`w-4 h-4 shrink-0 mt-0.5 ${value ? activeColor : 'text-slate-500 group-hover:text-slate-300'}`} />
-                    <div className="flex flex-col min-w-0">
+                <div className="flex items-start gap-2.5 min-w-0 pr-2 cursor-pointer w-full group" onClick={onClick}>
+                  <Icon className={`w-4 h-4 shrink-0 mt-0.5 ${value ? activeColor : 'text-slate-500 group-hover:text-slate-300'}`} />
+                  <div className="flex flex-col min-w-0">
+                    <div className="flex items-center gap-1.5">
                       <span className="text-xs font-medium text-slate-200 group-hover:text-white leading-tight">
                         {label}
                       </span>
-                      <span className="text-[10px] text-slate-400 leading-tight truncate">
-                        {description}
-                      </span>
+                      <HelpTooltip 
+                        title={label} 
+                        description={description} 
+                        significance={significance}
+                        iconOnly={true}
+                      />
                     </div>
+                    <span className="text-[10px] text-slate-400 leading-tight truncate mt-0.5">
+                      {description}
+                    </span>
                   </div>
-                </HelpTooltip>
+                </div>
 
                 <button
                   onClick={onClick}
@@ -313,6 +323,12 @@ export const VariableSelector: React.FC = () => {
               <div className="flex items-center gap-1.5 text-slate-300 text-[11px] font-medium">
                 <Palette className="w-3.5 h-3.5 text-cyan-400" />
                 Color Palette
+                <HelpTooltip 
+                  title="Color Palette" 
+                  description="Choose the visual color mapping algorithm." 
+                  significance="Scientific sets standard oceanographic colors; Intuitive maps blue-red; Anomaly highlights extremes." 
+                  iconOnly={true} 
+                />
               </div>
               <div className="flex bg-slate-800/80 border border-slate-700/50 rounded-lg p-0.5 overflow-hidden">
                 {['scientific', 'intuitive', 'anomaly'].map((mode) => (
@@ -336,6 +352,12 @@ export const VariableSelector: React.FC = () => {
               <div className="flex items-center gap-1.5 text-slate-300 text-[11px] font-medium">
                 <SlidersHorizontal className="w-3.5 h-3.5 text-cyan-400" />
                 Scale Mapping
+                <HelpTooltip 
+                  title="Scale Mapping" 
+                  description="Adjust how data values are mapped to the color gradient." 
+                  significance="Logarithmic scaling helps reveal details in highly skewed variables like Chlorophyll-a." 
+                  iconOnly={true} 
+                />
               </div>
               <div className="flex bg-slate-800/80 border border-slate-700/50 rounded-lg p-0.5 overflow-hidden">
                 {['linear', 'log'].map((mode) => (
@@ -359,6 +381,12 @@ export const VariableSelector: React.FC = () => {
               <div className="flex items-center gap-1.5 text-slate-300 text-[11px] font-medium">
                 <Type className="w-3.5 h-3.5 text-cyan-400" />
                 Outreach Level
+                <HelpTooltip 
+                  title="Outreach Level" 
+                  description="Toggle the complexity of text descriptions across the app." 
+                  significance="Simplifies technical jargon (e.g. 'Thermohaline') into accessible concepts for public science communication." 
+                  iconOnly={true} 
+                />
               </div>
               <div className="flex bg-slate-800/80 border border-slate-700/50 rounded-lg p-0.5 overflow-hidden">
                 {['expert', 'simple'].map((mode) => (
@@ -381,4 +409,4 @@ export const VariableSelector: React.FC = () => {
       </div>
     </div>
   );
-};
+});

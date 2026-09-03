@@ -8,7 +8,7 @@ interface FloatSelectorProps {
   onSelect: (float: FloatSummary) => void;
 }
 
-export const FloatSelector: React.FC<FloatSelectorProps> = ({ floats, selectedFloat, onSelect }) => {
+export const FloatSelector: React.FC<FloatSelectorProps> = React.memo(({ floats, selectedFloat, onSelect }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const filteredFloats = useMemo(() => {
@@ -74,4 +74,4 @@ export const FloatSelector: React.FC<FloatSelectorProps> = ({ floats, selectedFl
       </div>
     </div>
   );
-};
+});

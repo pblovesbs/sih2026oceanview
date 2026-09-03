@@ -28,6 +28,12 @@ async def get_floats():
     return ocean_service.get_floats()
 
 
+@router.get("/floats/simulated_drift")
+async def get_simulated_drift():
+    """Retrieve modeled Lagrangian advection drift path at parking depth for all Argo floats."""
+    return ocean_service.get_simulated_drift()
+
+
 @router.get("/floats/{float_id}/profile")
 async def get_float_profile(float_id: str):
     """Retrieve complete vertical column profile for an Argo float."""

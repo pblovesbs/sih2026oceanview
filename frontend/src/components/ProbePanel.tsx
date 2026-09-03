@@ -1,7 +1,7 @@
 import React from 'react';
 import { useOceanStore } from '../store/useOceanStore';
 import { DraggablePanel } from './DraggablePanel';
-import { Droplets, Thermometer, FlaskConical, Leaf, X, Anchor } from 'lucide-react';
+import { Droplets, Thermometer, FlaskConical, Leaf, X, Anchor, Crosshair } from 'lucide-react';
 
 export const ProbePanel: React.FC = () => {
   const showProbePanel = useOceanStore((s) => s.showProbePanel);
@@ -71,6 +71,7 @@ export const ProbePanel: React.FC = () => {
     <DraggablePanel
       id="probe-panel"
       title="Live Data Probe HUD"
+      icon={Crosshair}
       initialPosition={{ x: Math.max(16, window.innerWidth - 300), y: 80 }}
       help={{
         description: 'Displays instant in-situ and modeled oceanographic metrics at the exact selected depth.',

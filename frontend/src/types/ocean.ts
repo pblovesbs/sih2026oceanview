@@ -86,3 +86,23 @@ export interface DateRangeResult {
   step_count: number;
   time_steps: string[];
 }
+
+export interface SimulatedDriftPoint {
+  time: string;
+  lon: number;
+  lat: number;
+  depth: number;
+}
+
+export interface FloatDriftData {
+  platform_number: string;
+  parking_depth: number;
+  drift_path: SimulatedDriftPoint[];
+}
+
+export interface SimulatedDriftResponse {
+  source: string;
+  timesteps: string[];
+  drifts: Record<string, FloatDriftData>;
+}
+
